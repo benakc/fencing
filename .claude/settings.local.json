@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.fencingtracker.com)",
+      "WebSearch",
+      "WebFetch(domain:fencingtracker.com)"
+    ]
+  }
+}
