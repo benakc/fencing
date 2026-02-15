@@ -3,7 +3,20 @@
     "allow": [
       "WebFetch(domain:www.fencingtracker.com)",
       "WebSearch",
-      "WebFetch(domain:fencingtracker.com)"
+      "WebFetch(domain:fencingtracker.com)",
+      "Bash(open:*)",
+      "Bash(curl:*)",
+      "Bash(python3:*)",
+      "Bash(MKL_THREADING_LAYER=GNU /Users/bcohen/anaconda3/bin/python3:*)",
+      "Bash(/usr/local/bin/python3:*)",
+      "Bash(pip3 install:*)",
+      "Bash(/Users/bcohen/anaconda3/bin/pip install:*)",
+      "Bash(/Users/bcohen/anaconda3/bin/conda install:*)",
+      "Bash(/Users/bcohen/anaconda3/bin/python3:*)",
+      "Bash(DYLD_PRINT_LIBRARIES=1 /Users/bcohen/anaconda3/bin/python3:*)",
+      "Bash(ls:*)",
+      "Bash(echo:*)",
+      "Bash(done)"
     ]
   }
 }

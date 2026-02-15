@@ -1,0 +1,207 @@
+======================================================================
+FENCINGTRACKER ANALYSIS — SUMMARY REPORT
+======================================================================
+
+1. DATA OVERVIEW
+----------------------------------------
+Total bouts: 1245
+Unique events: 16
+Unique fencers: 632
+
+Fencer 1 win rate: 90.1% (selection bias — fencer 1 is the reporting fencer)
+NOTE: ELO and logistic analyses use randomized fencer assignment to correct this bias.
+
+Bouts by weapon:
+  epee    :  327
+  foil    :  447
+  saber   :  471
+
+Bouts by type:
+  DE      :  306
+  Pool    :  939
+
+Bouts by weapon x type:
+bout_type   DE  Pool
+weapon              
+epee        84   243
+foil       100   347
+saber      122   349
+
+2. RATING DISTRIBUTION
+----------------------------------------
+  A: 259
+  B: 106
+  C: 297
+  D: 333
+  E: 366
+  U: 1129
+
+3. ELO DISTRIBUTION
+----------------------------------------
+  Count: 2472
+  Mean:  1755
+  Std:   629
+  Min:   223
+  25%:   1318
+  50%:   1718
+  75%:   2230
+  Max:   3461
+
+4. GENDER INFERENCE
+----------------------------------------
+  M       :  244 (69.5%)
+  F       :   64 (18.2%)
+  Unknown :   43 (12.3%)
+  Inference rate: 87.7%
+
+Gender matchup counts (bout-level):
+  M vs M          :  617
+  M vs F          :  211
+  M vs Unknown    :  130
+  F vs M          :  100
+  Unknown vs M    :   62
+  F vs F          :   37
+  Unknown vs Unknown:   27
+  Unknown vs F    :   25
+  F vs Unknown    :   18
+
+5. RATING MATCHUP SAMPLE SIZES
+----------------------------------------
+  A vs A    :   26
+  A vs B    :   20
+  A vs C    :   54
+  A vs D    :   31
+  A vs E    :   36
+  A vs U    :   66
+  B vs B    :    4 *** SMALL SAMPLE
+  B vs C    :   13 *** SMALL SAMPLE
+  B vs D    :   17 *** SMALL SAMPLE
+  B vs E    :    6 *** SMALL SAMPLE
+  B vs U    :   42
+  C vs C    :   21
+  C vs D    :   42
+  C vs E    :   58
+  C vs U    :   88
+  D vs D    :   23
+  D vs E    :   53
+  D vs U    :  144
+  E vs E    :   24
+  E vs U    :  165
+  U vs U    :  312
+
+6. DE SCORE MARGINS
+----------------------------------------
+  Count: 306
+  Mean:  6.6
+  Std:   3.6
+  Min:   1
+  Median:6
+  Max:   14
+
+7. RATING WIN% CROSS-TAB (all weapons)
+----------------------------------------
+Row = my rating, Col = opponent rating
+Cell = win% (N), * = N < 20
+               A          B          C          D          E          U
+rating                                                                 
+A       50% (52)   60% (20)   74% (54)   87% (31)   81% (36)   85% (66)
+B       40% (20)   50% (8)*  62% (13)*  65% (17)*  100% (6)*   88% (42)
+C       26% (54)  38% (13)*   50% (42)   45% (42)   69% (58)   85% (88)
+D       13% (31)  35% (17)*   55% (42)   50% (46)   70% (53)  83% (144)
+E       19% (36)    0% (6)*   31% (58)   30% (53)   50% (48)  72% (165)
+U       15% (66)   12% (42)   15% (88)  17% (144)  28% (165)  50% (624)
+
+
+  EPEE:
+                A          B          C          D          E          U
+rating                                                                  
+A        50% (38)  67% (15)*   89% (28)   95% (20)   90% (20)   80% (40)
+B       33% (15)*   50% (6)*   83% (6)*   67% (9)*  100% (2)*  84% (19)*
+C        11% (28)   17% (6)*  50% (12)*   33% (9)*   65% (20)   67% (24)
+D         5% (20)   33% (9)*   67% (9)*   50% (4)*   50% (4)*  63% (19)*
+E        10% (20)    0% (2)*   35% (20)   50% (4)*  50% (14)*   71% (34)
+U        20% (40)  16% (19)*   33% (24)  37% (19)*   29% (34)   50% (42)
+
+
+  FOIL:
+                A          B          C          D          E          U
+rating                                                                  
+A       50% (10)*   50% (2)*  50% (12)*  100% (6)*   71% (7)*  89% (19)*
+B        50% (2)*          -    0% (2)*   33% (3)*  100% (1)*  88% (17)*
+C       50% (12)*  100% (2)*   50% (8)*  70% (10)*  83% (12)*  100% (20)
+D         0% (6)*   67% (3)*  30% (10)*   50% (20)  90% (10)*   88% (66)
+E        29% (7)*    0% (1)*  17% (12)*  10% (10)*  50% (16)*   69% (64)
+U       11% (19)*  12% (17)*    0% (20)   12% (66)   31% (64)  50% (338)
+
+
+  SABER:
+                A         B          C         D          E          U
+rating                                                                
+A        50% (4)*  33% (3)*  64% (14)*  40% (5)*   67% (9)*  100% (7)*
+B        67% (3)*  50% (2)*   60% (5)*  80% (5)*  100% (3)*  100% (6)*
+C       36% (14)*  40% (5)*   50% (22)  39% (23)   65% (26)   89% (44)
+D        60% (5)*  20% (5)*   61% (23)  50% (22)   67% (39)   83% (59)
+E        33% (9)*   0% (3)*   35% (26)  33% (39)  50% (18)*   76% (67)
+U         0% (7)*   0% (6)*   11% (44)  17% (59)   24% (67)  50% (244)
+
+
+8. LOGISTIC REGRESSION
+----------------------------------------
+Model: P(left_wins) ~ elo_diff + weapon
+(Fencer positions randomized to remove fencer_1 selection bias; raw fencer_1 win rate was 90.1%)
+
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:              left_wins   No. Observations:                 1227
+Model:                          Logit   Df Residuals:                     1223
+Method:                           MLE   Df Model:                            3
+Date:                Fri, 13 Feb 2026   Pseudo R-squ.:                 0.09688
+Time:                        09:26:24   Log-Likelihood:                -767.79
+converged:                       True   LL-Null:                       -850.15
+Covariance Type:            nonrobust   LLR p-value:                 1.755e-35
+=================================================================================
+                    coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------
+const             0.0724      0.118      0.616      0.538      -0.158       0.303
+elo_diff_rand     0.0009   8.01e-05     11.622      0.000       0.001       0.001
+weapon_foil      -0.0870      0.157     -0.553      0.580      -0.395       0.221
+weapon_saber      0.0652      0.153      0.426      0.670      -0.235       0.365
+=================================================================================
+
+Predicted win probabilities:
+  200 ELO advantage, epee: P(win) = 0.564
+  200 ELO advantage, foil: P(win) = 0.543
+  200 ELO advantage, saber: P(win) = 0.580
+  500 ELO advantage, epee: P(win) = 0.631
+  1000 ELO advantage, epee: P(win) = 0.732
+  0 ELO diff, epee: P(win) = 0.518
+  -200 ELO disadvantage, epee: P(win) = 0.472
+  -500 ELO disadvantage, epee: P(win) = 0.403
+
+9. UPSET ANALYSIS
+----------------------------------------
+Bouts with different ratings: 835
+
+Upset rate by rating gap:
+  1-letter gap: 33.4% upset rate (N=293)
+  2-letter gap: 23.1% upset rate (N=273)
+  3-letter gap: 13.6% upset rate (N=125)
+  4-letter gap: 15.4% upset rate (N=78)
+  5-letter gap: 15.2% upset rate (N=66)
+
+Pool vs DE upset rates:
+  DE      : 24.4% upset rate (N=213)
+  Pool    : 23.8% upset rate (N=622)
+
+Pool vs DE upset rates by gap:
+  1-letter gap: Pool=32.2% (N=202), DE=36.3% (N=91)
+  2-letter gap: Pool=23.1% (N=212), DE=23.0% (N=61)
+  3-letter gap: Pool=15.6% (N=96), DE=6.9% (N=29)
+  4-letter gap: Pool=15.9% (N=63), DE=13.3% (N=15)
+  5-letter gap: Pool=18.4% (N=49), DE=5.9% (N=17)
+
+
+10. RATING vs ELO PREDICTION ACCURACY
+----------------------------------------
+Rating-based accuracy: 75.9% (630/830)
+ELO-based accuracy:    67.5% (822/1217)

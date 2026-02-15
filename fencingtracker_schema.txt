@@ -1,0 +1,47 @@
+FencingTracker Bout-Level CSV Schema
+=====================================
+File: fencingtracker_bouts.csv
+
+Column Definitions:
+
+bout_id              Unique identifier: {event_id}_{fencer1_id}_{fencer2_id}_{bout_type}_{score}
+tournament_name      Name of the tournament (e.g. "AFM Open Senior Mixed Epee Tournament")
+event_id             FencingTracker event ID number
+event_name           Division/event name (e.g. "Senior Mixed Epee")
+weapon               Weapon: "epee", "foil", or "saber"
+date                 Date of the event as shown on fencingtracker
+location             Venue and city
+
+fencer_1_name        Fencer 1 full name (LAST First format)
+fencer_1_id          FencingTracker fencer ID
+fencer_1_rating      USFA letter rating at time of event (e.g. "A25", "B24", "U" for unrated)
+fencer_1_elo_pool_before   Pool ELO/strength score before the event
+fencer_1_elo_pool_after    Pool ELO/strength score after the event
+fencer_1_elo_de_before     DE ELO/strength score before the event
+fencer_1_elo_de_after      DE ELO/strength score after the event
+fencer_1_birth_year  Birth year (from profile page)
+fencer_1_club        Club affiliation
+fencer_1_place       Final placement in the event
+
+fencer_2_name        Fencer 2 full name
+fencer_2_id          FencingTracker fencer ID
+fencer_2_rating      USFA letter rating at time of event
+fencer_2_elo_pool_before   Pool ELO/strength score before the event
+fencer_2_elo_pool_after    Pool ELO/strength score after the event
+fencer_2_elo_de_before     DE ELO/strength score before the event
+fencer_2_elo_de_after      DE ELO/strength score after the event
+fencer_2_birth_year  Birth year
+fencer_2_club        Club affiliation
+fencer_2_place       Final placement in the event
+
+winner               Which fencer won: 1 or 2
+score                Bout score (e.g. "5:3" for pool, "15:10" for DE)
+bout_type            "Pool" or "DE" (direct elimination)
+
+Notes:
+- Fencer 1 is always the fencer whose history page the bout was extracted from
+- Winner=1 means fencer_1 won (they had result "V"), Winner=2 means fencer_2 won
+- ELO values reflect the fencer's overall pool/DE strength, not bout-specific
+- Gender is not explicitly available; "Senior Mixed" events include all genders
+- Rating letters: A (highest) > B > C > D > E > U (unrated)
+- The number after the rating letter is the year it was earned (e.g. A25 = A rating, 2025)

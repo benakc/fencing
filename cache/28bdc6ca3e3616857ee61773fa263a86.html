@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Statistics and analytics for the sport of fencing" />
+    <meta name="keywords"
+        content="fencing club rankings, best fencing clubs, fencing tournament results, fencing statistics" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <!--  Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" />
+    <link rel="stylesheet" href="/styles.css" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;400&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <link rel="icon" href="/icons/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+    <!-- JavaScript -->
+    <script src="/js/colors.js"></script>
+    <script src="/js/search.js"></script>
+
+    <!-- Disable the BOSF modal for now
+    <script src="/js/popup/config.js"></script>
+    <script src="/js/popup/index.js"></script>
+    -->
+
+    
+    <title>Strength of Senior Mixed Saber - Attila Petschauer Sabre & Mission Foil/Epee Challenge (Open and Y12) - FencingTracker</title>
+    
+
+    
+    
+<style>
+/* Results table styles */
+#resultsTable .nowrap {
+    white-space: nowrap;
+}
+
+#resultsTable td, #resultsTable th {
+    vertical-align: middle;
+}
+
+#legendTable td, #legendTable th {
+    vertical-align: middle;
+}
+</style>
+
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PZQMLKK');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4785171480479202"
+        crossorigin="anonymous"></script>
+    <!-- End Google AdSense -->
+
+    <!-- Google Ad Manager -->
+    <!-- <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+<script>
+    window.googletag = window.googletag || { cmd: [] };
+    googletag.cmd.push(function () {
+        var bannerSizes = googletag.sizeMapping()
+            .addSize([1000, 768], [970, 90])
+            .addSize([728, 300], [728, 90])
+            .addSize([0, 0], [320, 50])
+            .build();
+
+        // Define the leaderboard slot with size mapping
+        var adSlot1 = googletag.defineSlot('/23166107112/fencingtracker_leaderboard', [[970, 90], [728, 90], [320, 50]], 'fencingtracker_leaderboard')
+            .addService(googletag.pubads());
+        adSlot1.defineSizeMapping(bannerSizes);
+
+        // Define the sticky banner with size mapping
+        var stickyBanner = googletag.defineOutOfPageSlot('/23166107112/fencingtracker_stickybanner', googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR)
+            .addService(googletag.pubads())
+            .setTargeting("pos", "anchor");
+        stickyBanner.defineSizeMapping(bannerSizes);
+
+        googletag.pubads().enableSingleRequest();
+        googletag.pubads().collapseEmptyDivs();
+        googletag.enableServices();
+    });
+</script> -->
+    <!-- End Google Ad Manager -->
+
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZQMLKK" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/images/fencingtracker.svg" alt="Fencing Tracker" width="30" height="30"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/largestclubs">Largest Clubs</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Top Clubs</a>
+                        <ul class="dropdown-menu gap-1 p-2 rounded-3 mx-0 shadow w-220px">
+                            <li><a class="dropdown-item rounded-2" href="/topclubs/epee">Epee</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/topclubs/foil">Foil</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/topclubs/saber">Saber</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">National Circuit</a>
+                        <ul class="dropdown-menu gap-1 p-2 rounded-3 mx-0 shadow w-220px">
+                            <li><a class="dropdown-item rounded-2" href="/np/ranking/dv1me">Men's
+                                    Epee</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/np/ranking/dv1mf">Men's
+                                    Foil</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/np/ranking/dv1ms">Men's
+                                    Saber</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item rounded-2" href="/np/ranking/dv1we">Women's
+                                    Epee</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/np/ranking/dv1wf">Women's
+                                    Foil</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/np/ranking/dv1ws">Women's
+                                    Saber</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Recruiting</a>
+                        <ul class="dropdown-menu gap-1 p-2 rounded-3 mx-0 shadow w-220px">
+                            <li><a class="dropdown-item rounded-2" href="/strength/ME/D">Men's
+                                    Epee</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/strength/MF/D">Men's
+                                    Foil</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/strength/MS/D">Men's
+                                    Saber</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item rounded-2" href="/strength/WE/D">Women's
+                                    Epee</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/strength/WF/D">Women's
+                                    Foil</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/strength/WS/D">Women's
+                                    Saber</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="d-flex" role="search" id="searchContainer">
+                    <div class="dropdown" style="margin-right: 0.5em;">
+                        <input class="form-control me-2" name="s" type="search" placeholder="Fencer's name..."
+                            aria-label="Search" id="searchTextbox"/>
+                        <ul class="dropdown-menu" id="searchDropdown"></ul>
+                    </div>
+
+                    <button class="btn btn-outline-primary" onclick="goToSearch()">Search</button>
+                </div>
+
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item dropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="display: none; width: 16px;">
+                            <symbol id="circle-half" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
+                            </symbol>
+                            <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
+                                </path>
+                                <path
+                                    d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
+                                </path>
+                            </symbol>
+                            <symbol id="sun-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+                                </path>
+                            </symbol>
+                            <symbol id="check2" viewBox="0 0 16 16">
+                                <path
+                                    d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                            </symbol>
+                        </svg>
+                        <button
+                            class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center"
+                            id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown"
+                            data-bs-display="static" aria-label="Toggle theme (auto)">
+                            <svg class="bi my-1 theme-icon-active">
+                                <use href="#circle-half"></use>
+                            </svg>
+                            <span class="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center"
+                                    data-bs-theme-value="light" aria-pressed="false">
+                                    <svg class="bi me-2 opacity-50 theme-icon">
+                                        <use href="#sun-fill"></use>
+                                    </svg>
+                                    Light
+                                    <svg class="bi ms-auto d-none">
+                                        <use href="#check2"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center"
+                                    data-bs-theme-value="dark" aria-pressed="false">
+                                    <svg class="bi me-2 opacity-50 theme-icon">
+                                        <use href="#moon-stars-fill"></use>
+                                    </svg>
+                                    Dark
+                                    <svg class="bi ms-auto d-none">
+                                        <use href="#check2"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center active"
+                                    data-bs-theme-value="auto" aria-pressed="true">
+                                    <svg class="bi me-2 opacity-50 theme-icon">
+                                        <use href="#circle-half"></use>
+                                    </svg>
+                                    Auto
+                                    <svg class="bi ms-auto d-none">
+                                        <use href="#check2"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+
+                    
+
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="/login">Log in</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="/signup">Sign up</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3 m-auto">
+    
+
+    
+
+    
+
+        
+
+
+
+        
+        <h1>Attila Petschauer Sabre & Mission Foil/Epee Challenge (Open and Y12)</h1>
+        <h2>Senior Mixed Saber</h2>
+        <h4>Saturday, May 17, 2025 at 1:00 PM</h4>
+
+        <p>Mission Fencing Center - Rocky Point, NY, USA</p>
+
+        <h3>Results</h3>
+
+        
+            
+
+<ul class="nav nav-tabs mt-3 mb-3">
+
+    <li class="nav-item">
+        
+            
+                <a class="nav-link" href="/event/32442/results">Difficulty</a>
+            
+        
+    </li>
+
+    <li class="nav-item">
+        
+            
+                <a class="nav-link" href="/event/32442/results/upsets">Upsets</a>
+            
+        
+    </li>
+
+    <li class="nav-item">
+        
+            
+                <a class="nav-link" href="/event/32442/results/pools">Pool Heatmap</a>
+            
+        
+    </li>
+
+    <li class="nav-item">
+        
+            <a class="nav-link active" aria-current="page">Strength</a>
+        
+    </li>
+
+</ul>
+            
+
+<script>
+
+function buildFilterUrl() {
+    var string = '';
+
+    var birthYear = document.getElementById('birthYear').value;
+    if (birthYear) {
+        string += `birthYear:${birthYear}`;
+    }  
+
+    var encoded = string != '' ? `?filter=${encodeURIComponent(string)}` : '';
+
+    return "/event/32442/results/strength" + encoded;
+}
+
+</script>
+
+
+
+<div class="accordion" id="filterAccordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Filter <i class="bi bi-filter ms-1"></i>
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Birth Year</label>
+                            <input type="number" class="form-control" id="birthYear" name="birthYear" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button onclick="window.location.href = buildFilterUrl()" type="submit" class="btn btn-primary">Filter</button>
+                        <a href="/event/32442/results/strength" class="btn btn-secondary">Reset</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br/>
+        
+
+
+
+        <div class="table-responsive">
+            <table class="table table-striped" id="resultsTable">
+                <thead class="thead-dark">
+                    <tr>
+                        <th rowspan="2" scope="col">#</th>
+                        <th rowspan="2" scope="col">Name</th>
+                        <th colspan="3" scope="col" class="text-center">Pool Strength</th>
+                        <th colspan="3" scope="col" class="text-center">DE Strength</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Before</th>
+                        <th scope="col">After</th>
+                        <th scope="col">Change</th>
+                        <th scope="col">Before</th>
+                        <th scope="col">After</th>
+                        <th scope="col">Change</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    
+                    <tr>
+                        <td>1</td>
+                        <td>
+                        <a href="/p/100231767/Reese-Birnstill/history">BIRNSTILL Reese</a>
+                        
+                        </td>
+                        
+                            <td>1939</td>
+                            <td>1943</td>
+                            <td>
+                                
+                                    <i class="bi-caret-up-fill sk-increase"></i> 3
+                                
+                            </td>
+                        
+                        
+                            <td>2071</td>
+                            <td>2076</td>
+                            <td>
+                                
+                                    <i class="bi-caret-up-fill sk-increase"></i> 4
+                                
+                            </td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2</td>
+                        <td>
+                        <a href="/p/100279233/Joseph-Losquadro/history">LOSQUADRO Joseph</a>
+                        
+                        </td>
+                        
+                            <td>1520</td>
+                            <td>1509</td>
+                            <td>
+                                
+                                    <i class="bi-caret-down-fill sk-decrease"></i> 11
+                                
+                            </td>
+                        
+                        
+                            <td>1720</td>
+                            <td>1735</td>
+                            <td>
+                                
+                                    <i class="bi-caret-up-fill sk-increase"></i> 15
+                                
+                            </td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>3</td>
+                        <td>
+                        <a href="/p/100493325/Charles-Pineda/history">PINEDA Charles</a>
+                        
+                        </td>
+                        
+                            <td>970</td>
+                            <td>1202</td>
+                            <td>
+                                
+                                    <i class="bi-caret-up-fill sk-increase"></i> 232
+                                
+                            </td>
+                        
+                        
+                            <td>2373</td>
+                            <td>2468</td>
+                            <td>
+                                
+                                    <i class="bi-caret-up-fill sk-increase"></i> 95
+                                
+                            </td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>3</td>
+                        <td>
+                        <a href="/p/101254567/Mike-Flanagan/history">FLANAGAN Mike</a>
+                        
+                        </td>
+                        
+                            <td>2500</td>
+                            <td>2803</td>
+                            <td>
+                                
+                                    <i class="bi-caret-up-fill sk-increase"></i> 303
+                                
+                            </td>
+                        
+                        
+                            <td>2500</td>
+                            <td>1596</td>
+                            <td>
+                                
+                                    <i class="bi-caret-down-fill sk-decrease"></i> 904
+                                
+                            </td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5</td>
+                        <td>
+                        <a href="/p/100308773/Allie-Harrison/history">HARRISON Allie</a>
+                        
+                        </td>
+                        
+                            <td>1091</td>
+                            <td>1095</td>
+                            <td>
+                                
+                                    <i class="bi-caret-up-fill sk-increase"></i> 5
+                                
+                            </td>
+                        
+                        
+                            <td>2301</td>
+                            <td>2229</td>
+                            <td>
+                                
+                                    <i class="bi-caret-down-fill sk-decrease"></i> 73
+                                
+                            </td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>6</td>
+                        <td>
+                        <a href="/p/100602848/Justin-Mack/history">MACK Justin</a>
+                        
+                        </td>
+                        
+                            <td>1215</td>
+                            <td>1086</td>
+                            <td>
+                                
+                                    <i class="bi-caret-down-fill sk-decrease"></i> 129
+                                
+                            </td>
+                        
+                        
+                            <td>1784</td>
+                            <td>1708</td>
+                            <td>
+                                
+                                    <i class="bi-caret-down-fill sk-decrease"></i> 75
+                                
+                            </td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>7</td>
+                        <td>
+                        <a href="/p/101320197/Violet-Fortner/history">FORTNER Violet</a>
+                        
+                        </td>
+                        
+                            <td>869</td>
+                            <td>737</td>
+                            <td>
+                                
+                                    <i class="bi-caret-down-fill sk-decrease"></i> 132
+                                
+                            </td>
+                        
+                        
+                            <td>1469</td>
+                            <td>1310</td>
+                            <td>
+                                
+                                    <i class="bi-caret-down-fill sk-decrease"></i> 158
+                                
+                            </td>
+                        
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="mt-5">Explanation</h4>
+
+        <p>If DE strength numbers aren't shown, this means that the person didn't fence in direct elimination.</p>
+
+
+
+
+    </div>
+    <!-- End Top Leaderboard -->
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-muted">© 2020-2026 FencingTracker</p>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="/privacy" class="nav-link px-2 text-muted">Privacy Policy</a></li>
+                <li class="nav-item"><a href="/contact" class="nav-link px-2 text-muted">Contact</a></li>
+                <li class="nav-item"><a href="/faq" class="nav-link px-2 text-muted">FAQs</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link px-2 text-muted">About</a></li>
+            </ul>
+        </footer>
+    </div>
+
+</body>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="discordToast" data-bs-autohide="false">
+        <div class="d-flex">
+            <div class="toast-body">
+                Want to keep up with all things fencingtracker? Join our Discord community <a href="/discord">here</a>.
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const toast = document.getElementById('discordToast')
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast)
+
+    toast.addEventListener('hidden.bs.toast', function () {
+        localStorage.setItem('discordToast', 'hidden')
+    })
+
+    
+</script>
+</html>

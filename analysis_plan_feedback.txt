@@ -1,0 +1,60 @@
+## Strengths
+
+The plan has a solid structure: scrape -> enrich -> store -> summarize -> analyze. The core question (relative performance by rating/ELO across weapon and gender) is well-defined and interesting.
+
+---
+
+## Suggested Improvements
+
+### Step 1 — Data Collection
+
+- 10 tournaments may be too few. Depending on tournament size, you could end up with a small sample, especially once you slice by weapon, gender, and rating. Consider pulling 30-50 tournaments, or targeting a minimum bout count (e.g., 10,000+ bouts) rather than a fixed tournament count.
+- Why only January 2026? A single month introduces seasonal bias (who competes in January may differ from the broader population). Consider expanding to 3-6 months, or at least acknowledging this limitation.
+- Tournament selection criteria. "10 tournaments" is vague — how will you select them? Largest? Random? Specific regions? This matters for generalizability. Consider focusing on national-level or large regional events for richer cross-rating matchups.
+- Respect the site's terms of service and rate limits. Add a note about polite scraping (delays between requests, checking robots.txt).
+
+### Step 2 — Enrichment
+
+- Fencer history pages could be expensive at scale. If you have hundreds of fencers, that's hundreds of additional page fetches. Plan for caching and error handling (pages that don't load, fencers with no history, etc.).
+- Timestamp the ratings/ELO. A fencer's rating changes over time. Clarify whether you want the rating *at the time of the tournament* or their *current* rating. This distinction matters a lot for analysis accuracy.
+- Define "rating" precisely. USFA letter ratings (A-E, U) have year components (e.g., A24). Decide whether you'll use just the letter or incorporate the year/recency.
+- Add fencer age/division if available. Veteran and youth fencers may skew results significantly.
+
+### Step 3 — Data Storage
+
+- CSV is fine for this scale, but consider adding a schema definition — a separate file or header comment documenting each column, its type, and valid values. This prevents ambiguity later.
+- Add a unique bout ID and tournament ID to make joins and deduplication straightforward.
+
+### Step 4 — Summary Statistics
+
+Good start. Additional summaries to consider:
+- Bout counts per rating matchup (e.g., how many A-vs-B bouts do you actually have?). This is critical — if a cell has <20 bouts, the win rate is unreliable.
+- Distribution of ELO scores (histogram) to understand your sample.
+- Geographic distribution of tournaments if available.
+- Score differentials in DE bouts (not just win/loss but margin of victory).
+
+### Step 5 — Analysis
+
+- Add confidence intervals or sample sizes to every cell in the cross tabs. A "75% win rate" means very different things with 8 bouts vs. 800 bouts. Consider color-coding cells by sample size reliability.
+- ELO bucketing strategy matters. "2300 vs 3000" implies exact values, but you'll need bins (e.g., 100-point ranges). Define the binning strategy up front.
+- Consider a logistic regression model in addition to the cross tabs. A simple model with P(win) ~ ELO_diff + weapon + gender_matchup would let you make predictions for any combination, smoothing over sparse cells. This is far more powerful than raw cross tabs.
+- Visualizations. The plan says "charts" but doesn't specify format. Consider:
+  - Heatmaps for rating-vs-rating win probability
+  - Line plots for P(win) as a function of ELO difference
+  - Bar charts for the summary stats
+
+---
+
+## Suggested Expansions
+
+1. Upset analysis — How often does the lower-rated/ELO fencer win? Which rating gaps produce the most upsets?
+2. Pool vs. DE differences — You're capturing bout type but not analyzing it. Pool bouts (to 5) and DE bouts (to 15) may have very different upset rates because longer bouts reduce variance.
+3. Home region advantage — If geography data is available, do local fencers perform better?
+4. Rating accuracy assessment — How well does the USFA letter rating predict outcomes compared to ELO? This directly answers whether the rating system is well-calibrated.
+5. Seeding vs. outcome — In DE brackets, how often does the higher seed win? Does seeding accuracy vary by weapon?
+
+---
+
+## Practical Concern
+
+Before building the scraper, do a quick manual inspection of a few fencingtracker.com tournament and fencer history pages to confirm that all the data fields you need (ELO, rating, gender, weapon, bout scores) are actually present and consistently formatted. Missing or inconsistent data is the most common reason projects like this stall.

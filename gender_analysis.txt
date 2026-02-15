@@ -1,0 +1,132 @@
+============================================================
+GENDER ANALYSIS REPORT
+============================================================
+
+1. GENDER INFERENCE SUMMARY
+----------------------------------------
+  M       :  244 fencers (69.5%)
+  F       :   64 fencers (18.2%)
+  Unknown :   43 fencers (12.3%)
+  Total unique fencers: 351
+  Cached history pages: 351
+  Inference rate: 87.7%
+  (Fencers without cache: 0)
+  (Fencers cached but only Mixed events: 43)
+
+2. BOUT-LEVEL GENDER MATCHUPS
+----------------------------------------
+  Both genders known:      980 bouts (78.7%)
+  At least one known:     1218 bouts (97.8%)
+  Neither known:            27 bouts (2.2%)
+
+  Matchups (both known):
+    M vs M      :  617
+    M vs F      :  211
+    F vs M      :  100
+    F vs F      :   37
+
+3. CROSS-GENDER WIN RATES (both genders known)
+----------------------------------------
+  M vs M: 50.0% win rate (N=1234)
+  M vs F: 69.5% win rate (N=311)
+  F vs M: 30.5% win rate (N=311)
+  F vs F: 50.0% win rate (N=74)
+
+4. CROSS-GENDER WIN RATES BY WEAPON
+----------------------------------------
+  EPEE:
+    M vs M: 50.0% (N=368)
+    M vs F: 65.2% (N=46)
+    F vs M: 34.8% (N=46)
+    F vs F: 50.0% (N=4) *
+
+  FOIL:
+    M vs M: 50.0% (N=478)
+    M vs F: 66.0% (N=97)
+    F vs M: 34.0% (N=97)
+    F vs F: 50.0% (N=16) *
+
+  SABER:
+    M vs M: 50.0% (N=388)
+    M vs F: 72.6% (N=168)
+    F vs M: 27.4% (N=168)
+    F vs F: 50.0% (N=54)
+
+5. M vs F WIN RATES BY RATING MATCHUP
+----------------------------------------
+   (Only showing matchups with N >= 3)
+  Total M vs F bouts: 311
+  Overall M win rate: 69.5%
+
+  M rating vs F rating -> M win%:
+    M(A) vs F(A): 75% M wins (N=4) *
+    M(A) vs F(C): 100% M wins (N=4) *
+    M(A) vs F(E): 100% M wins (N=4) *
+    M(A) vs F(U): 100% M wins (N=6) *
+    M(B) vs F(A): 50% M wins (N=4) *
+    M(B) vs F(U): 100% M wins (N=7) *
+    M(C) vs F(A): 78% M wins (N=9) *
+    M(C) vs F(C): 86% M wins (N=7) *
+    M(C) vs F(D): 67% M wins (N=6) *
+    M(C) vs F(E): 100% M wins (N=10)
+    M(C) vs F(U): 94% M wins (N=18)
+    M(D) vs F(A): 50% M wins (N=6) *
+    M(D) vs F(B): 33% M wins (N=3) *
+    M(D) vs F(C): 55% M wins (N=11)
+    M(D) vs F(D): 75% M wins (N=4) *
+    M(D) vs F(E): 83% M wins (N=12)
+    M(D) vs F(U): 100% M wins (N=19)
+    M(E) vs F(A): 43% M wins (N=7) *
+    M(E) vs F(C): 56% M wins (N=9) *
+    M(E) vs F(D): 50% M wins (N=8) *
+    M(E) vs F(E): 50% M wins (N=10)
+    M(E) vs F(U): 94% M wins (N=18)
+    M(U) vs F(A): 20% M wins (N=5) *
+    M(U) vs F(B): 0% M wins (N=3) *
+    M(U) vs F(C): 10% M wins (N=10)
+    M(U) vs F(D): 43% M wins (N=14)
+    M(U) vs F(E): 42% M wins (N=19)
+    M(U) vs F(U): 71% M wins (N=65)
+
+  ELO context for M vs F bouts:
+    Mean M ELO: 1707
+    Mean F ELO: 1760
+    Mean ELO diff (M-F): -53
+    Median ELO diff (M-F): -70
+
+    When ELO within +/-200 (N=53):
+      M win rate: 75.5%
+      Mean ELO diff: -7
+    When ELO within +/-500 (N=136):
+      M win rate: 75.7%
+      Mean ELO diff: 9
+
+  M vs F by weapon:
+    epee    : M wins 65.2% (N=46)
+    foil    : M wins 66.0% (N=97)
+    saber   : M wins 72.6% (N=168)
+
+  M vs F by bout type:
+    DE      : M wins 64.1% (N=64)
+    Pool    : M wins 70.9% (N=247)
+
+6. SAME-GENDER COMPARISONS
+----------------------------------------
+  M vs M (N=617):
+    Rating dist: A=154, B=67, C=162, D=193, E=180, U=478
+    ELO: mean=1751, median=1718, range=290-3461
+
+  F vs F (N=37):
+    Rating dist: A=14, B=1, C=10, D=10, E=11, U=28
+    ELO: mean=1687, median=1782, range=223-3162
+
+7. LIMITATIONS & CAVEATS
+----------------------------------------
+  - Gender inferred from event names (Men's/Women's) in fencer history pages
+  - Only 351/351 fencers have cached history pages
+  - Of cached fencers, 43 competed only in Mixed events (gender unknown)
+  - Overall inference rate: 87.7%
+  - Fencers with cached pages are biased toward those who appeared as fencer_1
+    (the reporting fencer in the scraper), who tend to be more active competitors
+  - Small sample sizes in many cells — interpret with caution
+  - * marks cells with N < 10 or N < 20 as noted

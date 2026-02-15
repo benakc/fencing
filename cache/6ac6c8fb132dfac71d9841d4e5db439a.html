@@ -1,0 +1,5476 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Statistics and analytics for the sport of fencing" />
+    <meta name="keywords"
+        content="fencing club rankings, best fencing clubs, fencing tournament results, fencing statistics" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <!--  Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" />
+    <link rel="stylesheet" href="/styles.css" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;400&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <link rel="icon" href="/icons/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+    <!-- JavaScript -->
+    <script src="/js/colors.js"></script>
+    <script src="/js/search.js"></script>
+
+    <!-- Disable the BOSF modal for now
+    <script src="/js/popup/config.js"></script>
+    <script src="/js/popup/index.js"></script>
+    -->
+
+    
+    <title>Fencing Tracker</title>
+    
+
+    
+    
+<style>
+/* Add borders to odd rows in a striped table */
+.odd-only tbody tr:nth-child(odd) {
+    border: 1px solid transparent;
+    padding: 0;
+}
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const squares = document.querySelectorAll("[data-tt]");
+
+        squares.forEach(square => {
+            const title = square.getAttribute("data-tt");
+
+            new bootstrap.Tooltip(square, {
+                title: title,
+                placement: "top"
+            });
+        });
+    });
+</script>
+
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PZQMLKK');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4785171480479202"
+        crossorigin="anonymous"></script>
+    <!-- End Google AdSense -->
+
+    <!-- Google Ad Manager -->
+    <!-- <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+<script>
+    window.googletag = window.googletag || { cmd: [] };
+    googletag.cmd.push(function () {
+        var bannerSizes = googletag.sizeMapping()
+            .addSize([1000, 768], [970, 90])
+            .addSize([728, 300], [728, 90])
+            .addSize([0, 0], [320, 50])
+            .build();
+
+        // Define the leaderboard slot with size mapping
+        var adSlot1 = googletag.defineSlot('/23166107112/fencingtracker_leaderboard', [[970, 90], [728, 90], [320, 50]], 'fencingtracker_leaderboard')
+            .addService(googletag.pubads());
+        adSlot1.defineSizeMapping(bannerSizes);
+
+        // Define the sticky banner with size mapping
+        var stickyBanner = googletag.defineOutOfPageSlot('/23166107112/fencingtracker_stickybanner', googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR)
+            .addService(googletag.pubads())
+            .setTargeting("pos", "anchor");
+        stickyBanner.defineSizeMapping(bannerSizes);
+
+        googletag.pubads().enableSingleRequest();
+        googletag.pubads().collapseEmptyDivs();
+        googletag.enableServices();
+    });
+</script> -->
+    <!-- End Google Ad Manager -->
+
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZQMLKK" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/images/fencingtracker.svg" alt="Fencing Tracker" width="30" height="30"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/largestclubs">Largest Clubs</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Top Clubs</a>
+                        <ul class="dropdown-menu gap-1 p-2 rounded-3 mx-0 shadow w-220px">
+                            <li><a class="dropdown-item rounded-2" href="/topclubs/epee">Epee</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/topclubs/foil">Foil</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/topclubs/saber">Saber</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">National Circuit</a>
+                        <ul class="dropdown-menu gap-1 p-2 rounded-3 mx-0 shadow w-220px">
+                            <li><a class="dropdown-item rounded-2" href="/np/ranking/dv1me">Men's
+                                    Epee</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/np/ranking/dv1mf">Men's
+                                    Foil</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/np/ranking/dv1ms">Men's
+                                    Saber</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item rounded-2" href="/np/ranking/dv1we">Women's
+                                    Epee</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/np/ranking/dv1wf">Women's
+                                    Foil</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/np/ranking/dv1ws">Women's
+                                    Saber</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Recruiting</a>
+                        <ul class="dropdown-menu gap-1 p-2 rounded-3 mx-0 shadow w-220px">
+                            <li><a class="dropdown-item rounded-2" href="/strength/ME/D">Men's
+                                    Epee</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/strength/MF/D">Men's
+                                    Foil</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/strength/MS/D">Men's
+                                    Saber</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item rounded-2" href="/strength/WE/D">Women's
+                                    Epee</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/strength/WF/D">Women's
+                                    Foil</a></li>
+                            <li><a class="dropdown-item rounded-2" href="/strength/WS/D">Women's
+                                    Saber</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="d-flex" role="search" id="searchContainer">
+                    <div class="dropdown" style="margin-right: 0.5em;">
+                        <input class="form-control me-2" name="s" type="search" placeholder="Fencer's name..."
+                            aria-label="Search" id="searchTextbox"/>
+                        <ul class="dropdown-menu" id="searchDropdown"></ul>
+                    </div>
+
+                    <button class="btn btn-outline-primary" onclick="goToSearch()">Search</button>
+                </div>
+
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item dropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="display: none; width: 16px;">
+                            <symbol id="circle-half" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
+                            </symbol>
+                            <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
+                                </path>
+                                <path
+                                    d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
+                                </path>
+                            </symbol>
+                            <symbol id="sun-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+                                </path>
+                            </symbol>
+                            <symbol id="check2" viewBox="0 0 16 16">
+                                <path
+                                    d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                            </symbol>
+                        </svg>
+                        <button
+                            class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center"
+                            id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown"
+                            data-bs-display="static" aria-label="Toggle theme (auto)">
+                            <svg class="bi my-1 theme-icon-active">
+                                <use href="#circle-half"></use>
+                            </svg>
+                            <span class="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center"
+                                    data-bs-theme-value="light" aria-pressed="false">
+                                    <svg class="bi me-2 opacity-50 theme-icon">
+                                        <use href="#sun-fill"></use>
+                                    </svg>
+                                    Light
+                                    <svg class="bi ms-auto d-none">
+                                        <use href="#check2"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center"
+                                    data-bs-theme-value="dark" aria-pressed="false">
+                                    <svg class="bi me-2 opacity-50 theme-icon">
+                                        <use href="#moon-stars-fill"></use>
+                                    </svg>
+                                    Dark
+                                    <svg class="bi ms-auto d-none">
+                                        <use href="#check2"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center active"
+                                    data-bs-theme-value="auto" aria-pressed="true">
+                                    <svg class="bi me-2 opacity-50 theme-icon">
+                                        <use href="#circle-half"></use>
+                                    </svg>
+                                    Auto
+                                    <svg class="bi ms-auto d-none">
+                                        <use href="#check2"></use>
+                                    </svg>
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+
+                    
+
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="/login">Log in</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="/signup">Sign up</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3 m-auto">
+    
+
+    
+
+    
+
+        
+
+
+
+        
+<div class="card">
+    <div class="card-header">
+        <div class="d-md-flex d-block align-items-center p-4">
+            <div class="ms-md-4 mt-3 mt-md-0 text-md-start text-center w-100">
+                <div class="d-md-flex d-block">
+                    <div class="my-auto mx-autos d-flex justify-content-center">
+                        <h1 class="fw-bold my-auto">Arthur Leung</h1>
+                        <div class="text-secondary my-auto ms-2 fs-2">
+                            
+                            <span class="flag-icon flag-icon-us rounded"
+                                title="USA"></span>
+                            
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-dark-emphasis float-md-end my-auto ms-auto fst-italic fw-normal">
+                        2009
+                    </h3>
+                    
+                </div>
+                <div class="my-auto d-md-flex d-block">
+                    
+                    <div><a class="fs-2 text-secondary link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                            href="/club/100323554/SFC/ratings">Scarsdale Fencing Center</a></div>
+                    
+                    
+                </div>
+                <div class="d-md-flex d-block mt-2 text-secondary-emphasis gap-3">
+                    
+                </div>
+            </div>
+        </div>
+
+        
+
+        <ul class="nav nav-tabs card-header-tabs">
+            
+            <li class="nav-item">
+                
+                <a class="nav-link"
+                    href="/p/100205465/Arthur-Leung">Summary</a>
+                
+            </li>
+            
+            <li class="nav-item">
+                
+                <a class="nav-link active" aria-current="page"
+                    href="/p/100205465/Arthur-Leung/history">History</a>
+                
+            </li>
+            
+            <li class="nav-item">
+                
+                <a class="nav-link"
+                    href="/p/100205465/Arthur-Leung/strength">Strength</a>
+                
+            </li>
+            
+        </ul>
+    </div>
+    <div class="card-body">
+        
+
+    
+
+    <h3>Win/Loss Statistics</h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+        <th></th>
+        
+            <th>2025-2026</th>
+        
+            <th>2024-2025</th>
+        
+            <th>2023-2024</th>
+        
+            <th>2022-2023</th>
+        
+        <th>Before 2022</th>
+        <th>All Time</th>
+    </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+        <td>Victories</td>
+        
+            <td>19</td>
+        
+            <td>16</td>
+        
+            <td>4</td>
+        
+            <td>-</td>
+        
+            <td>2</td>
+        
+            <td>41</td>
+        
+    </tr>
+                <tr>
+        <td>Losses</td>
+        
+            <td>19</td>
+        
+            <td>41</td>
+        
+            <td>4</td>
+        
+            <td>-</td>
+        
+            <td>4</td>
+        
+            <td>68</td>
+        
+    </tr>
+                <tr>
+        <td>Win Ratio</td>
+        
+            <td>50.0%</td>
+        
+            <td>28.1%</td>
+        
+            <td>50.0%</td>
+        
+            <td>-</td>
+        
+            <td>33.3%</td>
+        
+            <td>37.6%</td>
+        
+    </tr>
+                <tr>
+        <td>Pool Victories</td>
+        
+            <td>14</td>
+        
+            <td>14</td>
+        
+            <td>3</td>
+        
+            <td>-</td>
+        
+            <td>2</td>
+        
+            <td>33</td>
+        
+    </tr>
+                <tr>
+        <td>Pool Losses</td>
+        
+            <td>14</td>
+        
+            <td>34</td>
+        
+            <td>3</td>
+        
+            <td>-</td>
+        
+            <td>3</td>
+        
+            <td>54</td>
+        
+    </tr>
+                <tr>
+        <td>Pool Win Ratio</td>
+        
+            <td>50.0%</td>
+        
+            <td>29.2%</td>
+        
+            <td>50.0%</td>
+        
+            <td>-</td>
+        
+            <td>40.0%</td>
+        
+            <td>37.9%</td>
+        
+    </tr>
+                <tr>
+        <td>DE Victories</td>
+        
+            <td>5</td>
+        
+            <td>2</td>
+        
+            <td>1</td>
+        
+            <td>-</td>
+        
+            <td>-</td>
+        
+            <td>8</td>
+        
+    </tr>
+                <tr>
+        <td>DE Losses</td>
+        
+            <td>5</td>
+        
+            <td>7</td>
+        
+            <td>1</td>
+        
+            <td>-</td>
+        
+            <td>1</td>
+        
+            <td>14</td>
+        
+    </tr>
+                <tr>
+        <td>DE Win Ratio</td>
+        
+            <td>50.0%</td>
+        
+            <td>22.2%</td>
+        
+            <td>50.0%</td>
+        
+            <td>-</td>
+        
+            <td>0.0%</td>
+        
+            <td>36.4%</td>
+        
+    </tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="mb-4">
+        <small>Note: Seasons start on August 1<sup>st</sup> and end on July 31<sup>st</sup>.</small>
+    </p>
+
+    <h3>Scores</h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+        <th></th>
+        
+            <th>2025-2026</th>
+        
+            <th>2024-2025</th>
+        
+            <th>2023-2024</th>
+        
+            <th>2022-2023</th>
+        
+        <th>Before 2022</th>
+        <th>All Time</th>
+    </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+        <td>Easy wins<sup>†</sup></td>
+        
+            <td>8</td>
+        
+            <td>5</td>
+        
+            <td>2</td>
+        
+            <td>-</td>
+        
+            <td>-</td>
+        
+            <td>15</td>
+        
+    </tr>
+                <tr>
+        <td>Easy wins as % of wins</td>
+        
+            <td>42.1%</td>
+        
+            <td>31.2%</td>
+        
+            <td>50.0%</td>
+        
+            <td>-</td>
+        
+            <td>0.0%</td>
+        
+            <td>36.6%</td>
+        
+    </tr>
+                <tr>
+        <td>Close wins<sup>‡</sup></td>
+        
+            <td>8</td>
+        
+            <td>3</td>
+        
+            <td>2</td>
+        
+            <td>-</td>
+        
+            <td>2</td>
+        
+            <td>15</td>
+        
+    </tr>
+                <tr>
+        <td>Close wins as % of all wins</td>
+        
+            <td>42.1%</td>
+        
+            <td>18.8%</td>
+        
+            <td>50.0%</td>
+        
+            <td>-</td>
+        
+            <td>100.0%</td>
+        
+            <td>36.6%</td>
+        
+    </tr>
+                <tr>
+        <td>Close losses<sup>‡</sup></td>
+        
+            <td>11</td>
+        
+            <td>6</td>
+        
+            <td>1</td>
+        
+            <td>-</td>
+        
+            <td>-</td>
+        
+            <td>18</td>
+        
+    </tr>
+                <tr>
+        <td>Close losses as % of all losses</td>
+        
+            <td>57.9%</td>
+        
+            <td>14.6%</td>
+        
+            <td>25.0%</td>
+        
+            <td>-</td>
+        
+            <td>0.0%</td>
+        
+            <td>26.5%</td>
+        
+    </tr>
+                <tr>
+        <td>Big losses<sup>†</sup></td>
+        
+            <td>4</td>
+        
+            <td>13</td>
+        
+            <td>1</td>
+        
+            <td>-</td>
+        
+            <td>4</td>
+        
+            <td>22</td>
+        
+    </tr>
+                <tr>
+        <td>Big losses as % of all losses</td>
+        
+            <td>21.1%</td>
+        
+            <td>31.7%</td>
+        
+            <td>25.0%</td>
+        
+            <td>-</td>
+        
+            <td>100.0%</td>
+        
+            <td>32.4%</td>
+        
+    </tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="mb-4">
+        <small><sup>†</sup> Easy victories or big losses are those with the score difference of 4 or more touches in a pool, 7 or
+            more touches in direct elimination, and 5 or more in veteran and youth direct elimination.
+            <br />
+            <sup>‡</sup> Close bouts are those with the score difference of 1 or fewer touches in a pool, 3 or
+        fewer touches in direct elimination, or 2 or fewer touches in veteran or youth direct elimination.</small>
+    </p>
+
+    <!-- Show this section only if there are bouts with time expired (relevant for epee mostly) -->
+    
+
+    <h3>Events</h3>
+    <div class="table-responsive mb-3">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+        <th></th>
+        
+            <th>2025-2026</th>
+        
+            <th>2024-2025</th>
+        
+            <th>2023-2024</th>
+        
+            <th>2022-2023</th>
+        
+        <th>Before 2022</th>
+        <th>All Time</th>
+    </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+        <td>Events</td>
+        
+            <td>5</td>
+        
+            <td>8</td>
+        
+            <td>1</td>
+        
+            <td>-</td>
+        
+            <td>1</td>
+        
+            <td>15</td>
+        
+    </tr>
+                <tr>
+        <td>Tournaments</td>
+        
+            <td>3</td>
+        
+            <td>6</td>
+        
+            <td>1</td>
+        
+            <td>-</td>
+        
+            <td>1</td>
+        
+            <td>11</td>
+        
+    </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 class="mt-5">Competition History</h3>
+    <hr />
+
+    
+    
+        
+            
+            
+    <h4>Capitol Clash SYC/RCC & Y8</h4>
+    <h5>
+        <a href="/event/37331/results">Cadet Men's Saber</a>
+        (None, CDT),
+        January 18, 2026
+    </h5>
+    <h6>
+        Place 17 of 132,
+        Seed 94,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-easy"
+                                        data-tt="Very Easy">V</span></td>
+                <td>5:1</td>
+                <td>
+                
+                    <a href="/p/100301763/Nathaniel-Prosper/history">PROSPER Nathaniel</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>99</td>
+                <td></td>
+                <td>U</td>
+                <td>123</td>
+                <td>Nova Fencing Club</td>
+                <td>670</td>
+                <td>1315</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 4.8
+                        
+                    
+                </td>
+                <td>
+                        86%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    <a href="/p/100250921/Harry-Hu/history">HU Harry</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>61</td>
+                <td></td>
+                <td>E25</td>
+                <td>21</td>
+                <td>Nellya Fencers</td>
+                <td>1685</td>
+                <td>1320</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 22.3
+                        
+                    
+                </td>
+                <td>
+                        27%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">V</span></td>
+                <td>5:2</td>
+                <td>
+                
+                    <a href="/p/100340257/Kosei-Kamura/history">KAMURA Kosei</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>21</td>
+                <td></td>
+                <td>D25</td>
+                <td>110</td>
+                <td>Globus Fencing Academy</td>
+                <td>1353</td>
+                <td>1342</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 14.6
+                        
+                    
+                </td>
+                <td>
+                        49%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">V</span></td>
+                <td>5:3</td>
+                <td>
+                
+                    <a href="/p/100336336/Louis-Henderson/history">HENDERSON Louis</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-ca" title="CAN"></span>
+                    
+                </td>
+                <td>124</td>
+                <td></td>
+                <td>U</td>
+                <td>99</td>
+                <td>Tim Morehouse Fencing Club</td>
+                <td>1635</td>
+                <td>1357</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 19.8
+                        
+                    
+                </td>
+                <td>
+                        32%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">V</span></td>
+                <td>5:1</td>
+                <td>
+                
+                    <a href="/p/100250626/Abhishek-Chawla/history">CHAWLA Abhishek</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>18</td>
+                <td></td>
+                <td>D25</td>
+                <td>43</td>
+                <td>Capital Fencing Academy</td>
+                <td>1460</td>
+                <td>1377</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 15.6
+                        
+                    
+                </td>
+                <td>
+                        45%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    <a href="/p/100352520/Manyu-Vish/history">VISH Manyu</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>56</td>
+                <td></td>
+                <td>E25</td>
+                <td>74</td>
+                <td>Delaware Valley Fencers Club-PA</td>
+                <td>1403</td>
+                <td>1392</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 14.0
+                        
+                    
+                </td>
+                <td>
+                        49%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T128
+                    </td>
+
+                <td class="text-center"><span class="square easy"
+                                        data-tt="Easy">V</span></td>
+                <td>15:7</td>
+                <td>
+                
+                    <a href="/p/101667966/Ted-Yang/history">YANG Ted</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-ca" title="CAN"></span>
+                    
+                </td>
+                <td>122</td>
+                <td></td>
+                <td>U</td>
+                <td>119</td>
+                <td>Axis Fencing Club</td>
+                <td>1247</td>
+                <td>1510</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 41.5
+                        
+                    
+                </td>
+                <td>
+                        63%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T64
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">V</span></td>
+                <td>15:13</td>
+                <td>
+                
+                    <a href="/p/100304404/Aiden-Zhang/history">ZHANG Aiden</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>68</td>
+                <td></td>
+                <td>E25</td>
+                <td>51</td>
+                <td>Sigma Fencing Academy</td>
+                <td>1858</td>
+                <td>1552</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 92.5
+                        
+                    
+                </td>
+                <td>
+                        32%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T32
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>13:15</td>
+                <td>
+                
+                    <a href="/p/100330582/Andrew-Pak/history">PAK Andrew</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>33</td>
+                <td></td>
+                <td>D25</td>
+                <td>15</td>
+                <td>Jacksonville Fencing Club</td>
+                <td>1832</td>
+                <td>1644</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 46.5
+                        
+                    
+                </td>
+                <td>
+                        38%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>Fairfax Challenge ROC, RJCC, RYC</h4>
+    <h5>
+        <a href="/event/37117/results">Junior Men's Saber</a>
+        (None, JNR),
+        January 4, 2026
+    </h5>
+    <h6>
+        Place 11 of 24,
+        Seed 24,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100330256/Alan-Bukzin/history">BUKZIN Alan</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>15</td>
+                <td></td>
+                <td>D25</td>
+                <td>18</td>
+                <td>Nova Fencing Club</td>
+                <td>1658</td>
+                <td>1252</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 8.3
+                        
+                    
+                </td>
+                <td>
+                        25%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">V</span></td>
+                <td>5:2</td>
+                <td>
+                
+                    <a href="/p/100226711/Max-wang/history">WANG Max</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>10</td>
+                <td></td>
+                <td>C25</td>
+                <td>15</td>
+                <td>Capital Fencing Academy</td>
+                <td>1860</td>
+                <td>1244</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 30.0
+                        
+                    
+                </td>
+                <td>
+                        15%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">V</span></td>
+                <td>5:1</td>
+                <td>
+                
+                    <a href="/p/100300475/Ethan-Chang/history">CHANG Ethan</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>7</td>
+                <td></td>
+                <td>C25</td>
+                <td>8</td>
+                <td>Nazlymov Fencing Foundation</td>
+                <td>1724</td>
+                <td>1274</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 25.2
+                        
+                    
+                </td>
+                <td>
+                        23%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    <a href="/p/100312204/Ian-Mattingly/history">MATTINGLY Ian</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>18</td>
+                <td></td>
+                <td>E25</td>
+                <td>22</td>
+                <td></td>
+                <td>1520</td>
+                <td>1299</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 19.5
+                        
+                    
+                </td>
+                <td>
+                        36%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>1:5</td>
+                <td>
+                
+                    <a href="/p/100297697/Felix-Lin/history">LIN Felix</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>2</td>
+                <td>185</td>
+                <td>C25</td>
+                <td>1</td>
+                <td>Miracle Fencing Club</td>
+                <td>2161</td>
+                <td>1318</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 3.0
+                        
+                    
+                </td>
+                <td>
+                        8%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T32
+                    </td>
+
+                <td class="text-center"><span class="square easy"
+                                        data-tt="Easy">V</span></td>
+                <td>15:8</td>
+                <td>
+                
+                    <a href="/p/100353512/Brandon-Michalski/history">MICHALSKI Brandon</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>22</td>
+                <td></td>
+                <td>U</td>
+                <td>23</td>
+                <td>Nova Fencing Club</td>
+                <td>1044</td>
+                <td>1522</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 38.4
+                        
+                    
+                </td>
+                <td>
+                        76%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T16
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>6:15</td>
+                <td>
+                
+                    <a href="/p/100658979/Noah-Moon/history">MOON Noah</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>12</td>
+                <td></td>
+                <td>D25</td>
+                <td>7</td>
+                <td>Nova Fencing Club</td>
+                <td>1847</td>
+                <td>1560</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 49.6
+                        
+                    
+                </td>
+                <td>
+                        33%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>Fairfax Challenge ROC, RJCC, RYC</h4>
+    <h5>
+        <a href="/event/37066/results">Cadet Men's Saber</a>
+        (None, CDT),
+        January 3, 2026
+    </h5>
+    <h6>
+        Place 22 of 31,
+        Seed 21,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>3:5</td>
+                <td>
+                
+                    <a href="/p/100328643/Jayden-Liu/history">LIU Jayden</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>11</td>
+                <td></td>
+                <td>D25</td>
+                <td>3</td>
+                <td>Capital Fencing Academy</td>
+                <td>1526</td>
+                <td>1283</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 11.6
+                        
+                    
+                </td>
+                <td>
+                        34%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100253367/Brendan-Feng/history">FENG Brendan</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>1</td>
+                <td>123</td>
+                <td>C25</td>
+                <td>1</td>
+                <td>Miracle Fencing Club</td>
+                <td>2005</td>
+                <td>1271</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 4.4
+                        
+                    
+                </td>
+                <td>
+                        11%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-easy"
+                                        data-tt="Very Easy">V</span></td>
+                <td>5:1</td>
+                <td>
+                
+                    <a href="/p/101746563/Abdullatif-Tuna/history">TUNA Abdullatif</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>31</td>
+                <td></td>
+                <td>U</td>
+                <td>31</td>
+                <td>Forge Fencing Teams DUR</td>
+                <td>687</td>
+                <td>1267</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 6.2
+                        
+                    
+                </td>
+                <td>
+                        82%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-easy"
+                                        data-tt="Very Easy">V</span></td>
+                <td>5:1</td>
+                <td>
+                
+                    <a href="/p/100376138/Sasha-Teplesky/history">TEPLESKY Sasha</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>20</td>
+                <td></td>
+                <td>U</td>
+                <td>27</td>
+                <td>Nova Fencing Club</td>
+                <td>342</td>
+                <td>1273</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 2.7
+                        
+                    
+                </td>
+                <td>
+                        93%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100269907/Leo-Perrin/history">PERRIN Leo</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>10</td>
+                <td></td>
+                <td>D25</td>
+                <td>8</td>
+                <td>Nazlymov Fencing Foundation</td>
+                <td>1743</td>
+                <td>1276</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 7.6
+                        
+                    
+                </td>
+                <td>
+                        22%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100321522/Isaac-Brooks/history">BROOKS Isaac</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>27</td>
+                <td></td>
+                <td>U</td>
+                <td>17</td>
+                <td>Capital Fencing Academy</td>
+                <td>1267</td>
+                <td>1268</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 15.9
+                        
+                    
+                </td>
+                <td>
+                        50%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T32
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>8:15</td>
+                <td>
+                
+                    <a href="/p/100269907/Leo-Perrin/history">PERRIN Leo</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>10</td>
+                <td></td>
+                <td>D25</td>
+                <td>8</td>
+                <td>Nazlymov Fencing Foundation</td>
+                <td>2083</td>
+                <td>1560</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 38.4
+                        
+                    
+                </td>
+                <td>
+                        21%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>Nittany Lion Cup RYC/RJCC</h4>
+    <h5>
+        <a href="/event/36906/results">Junior Men's Saber</a>
+        (D1, JNR),
+        December 21, 2025
+    </h5>
+    <h6>
+        Place 16 of 18,
+        Seed 15,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100331146/Bodhi-Demers/history">DEMERS Bodhi</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>8</td>
+                <td></td>
+                <td>E24</td>
+                <td>8</td>
+                <td>Fencing Academy Of Boston</td>
+                <td>1469</td>
+                <td>1364</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 15.4
+                        
+                    
+                </td>
+                <td>
+                        43%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100348397/Samuel-Stewart/history">STEWART Samuel</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>5</td>
+                <td></td>
+                <td>E25</td>
+                <td>7</td>
+                <td>Advance Fencing And Fitness Academy</td>
+                <td>1272</td>
+                <td>1348</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 19.3
+                        
+                    
+                </td>
+                <td>
+                        55%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100352520/Manyu-Vish/history">VISH Manyu</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>2</td>
+                <td></td>
+                <td>E25</td>
+                <td>5</td>
+                <td>Delaware Valley Fencers Club-PA</td>
+                <td>1291</td>
+                <td>1329</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 18.1
+                        
+                    
+                </td>
+                <td>
+                        53%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100343522/Peter%20(Pete)-Tasikas/history">TASIKAS Peter</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>17</td>
+                <td></td>
+                <td>U</td>
+                <td>10</td>
+                <td>Rochester Fencing Club</td>
+                <td>1659</td>
+                <td>1311</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 10.0
+                        
+                    
+                </td>
+                <td>
+                        28%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100303573/Liam-Menzies/history">MENZIES Liam</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>10</td>
+                <td></td>
+                <td>U</td>
+                <td>9</td>
+                <td>International Fencing Club</td>
+                <td>1237</td>
+                <td>1301</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 18.1
+                        
+                    
+                </td>
+                <td>
+                        54%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T32
+                    </td>
+
+                <td class="text-center"><span class="square "
+                                        data-tt="">V</span></td>
+                <td>15:2</td>
+                <td>
+                
+                    KHAN AR
+                
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>13</td>
+                <td></td>
+                <td>U</td>
+                <td>17</td>
+                <td>Premier Fencing Club</td>
+                <td></td>
+                <td></td>
+                <td>
+                    
+                </td>
+                <td>
+                        
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T16
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>13:15</td>
+                <td>
+                
+                    <a href="/p/101870131/Kende-Kurucz/history">KURUCZ Kende</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-hu" title="HUN"></span>
+                    
+                </td>
+                <td>18</td>
+                <td></td>
+                <td>U</td>
+                <td>2</td>
+                <td></td>
+                <td>2284</td>
+                <td>1590</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 30.3
+                        
+                    
+                </td>
+                <td>
+                        20%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>Nittany Lion Cup RYC/RJCC</h4>
+    <h5>
+        <a href="/event/36821/results">Cadet Men's Saber</a>
+        (C2, CDT),
+        December 20, 2025
+    </h5>
+    <h6>
+        Place 16 of 38,
+        Seed 24,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100352520/Manyu-Vish/history">VISH Manyu</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>12</td>
+                <td></td>
+                <td>E25</td>
+                <td>19</td>
+                <td>Delaware Valley Fencers Club-PA</td>
+                <td>1244</td>
+                <td>1382</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 22.9
+                        
+                    
+                </td>
+                <td>
+                        59%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square easy"
+                                        data-tt="Easy">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    <a href="/p/100276345/Nicholas-Lieu/history">LIEU Nicholas</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>13</td>
+                <td></td>
+                <td>E24</td>
+                <td>28</td>
+                <td>Fencing Academy Of Philadelphia - University City</td>
+                <td>1202</td>
+                <td>1359</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 15.1
+                        
+                    
+                </td>
+                <td>
+                        60%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square "
+                                        data-tt="">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    LU Brian
+                
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-ca" title="CAN"></span>
+                    
+                </td>
+                <td>33</td>
+                <td></td>
+                <td>U</td>
+                <td>8</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    
+                </td>
+                <td>
+                        
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>1:5</td>
+                <td>
+                
+                    <a href="/p/100267962/Kyrus-Lau/history">LAU Kyrus</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>25</td>
+                <td></td>
+                <td>U</td>
+                <td>17</td>
+                <td>Aura Fencing Academy</td>
+                <td>1703</td>
+                <td>1374</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 11.3
+                        
+                    
+                </td>
+                <td>
+                        29%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square easy"
+                                        data-tt="Easy">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    <a href="/p/100598585/Samuel-Filmore/history">FILMORE Samuel</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>35</td>
+                <td></td>
+                <td>U</td>
+                <td>34</td>
+                <td>Rochester Fencing Club</td>
+                <td>927</td>
+                <td>1363</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 9.1
+                        
+                    
+                </td>
+                <td>
+                        75%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100246487/Riley%20James%20%22RJ%22-Beland/history">BELAND Riley James "RJ"</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>1</td>
+                <td>117</td>
+                <td>D25</td>
+                <td>1</td>
+                <td>American Institute Of Fencing</td>
+                <td>1838</td>
+                <td>1372</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 8.6
+                        
+                    
+                </td>
+                <td>
+                        22%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T32
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">V</span></td>
+                <td>15:14</td>
+                <td>
+                
+                    <a href="/p/100352520/Manyu-Vish/history">VISH Manyu</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>12</td>
+                <td></td>
+                <td>E25</td>
+                <td>19</td>
+                <td>Delaware Valley Fencers Club-PA</td>
+                <td>1561</td>
+                <td>1483</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 106.8
+                        
+                    
+                </td>
+                <td>
+                        45%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T16
+                    </td>
+
+                <td class="text-center"><span class="square "
+                                        data-tt="">D</span></td>
+                <td>11:15</td>
+                <td>
+                
+                    LU Brian
+                
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-ca" title="CAN"></span>
+                    
+                </td>
+                <td>33</td>
+                <td></td>
+                <td>U</td>
+                <td>8</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    
+                </td>
+                <td>
+                        
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>National Championships and July Challenge (Summer Nationals)</h4>
+    <h5>
+        <a href="/event/33153/results">Cadet Men's Saber</a>
+        (A4, CDT),
+        June 30, 2025
+    </h5>
+    <h6>
+        Place 238 of 282,
+        Seed 253,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>3:5</td>
+                <td>
+                
+                    <a href="/p/100252410/Kenneth-Kwon/history">KWON Kenneth</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>170</td>
+                <td></td>
+                <td>D24</td>
+                <td>30</td>
+                <td>Sabio Fencing Academy</td>
+                <td>1854</td>
+                <td>1405</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 10.3
+                        
+                    
+                </td>
+                <td>
+                        23%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100249677/Aaron-Liu/history">LIU Aaron</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>80</td>
+                <td>86</td>
+                <td>D24</td>
+                <td>78</td>
+                <td>Nellya Fencers</td>
+                <td>1902</td>
+                <td>1395</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 9.1
+                        
+                    
+                </td>
+                <td>
+                        20%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">V</span></td>
+                <td>5:1</td>
+                <td>
+                
+                    <a href="/p/100330582/Andrew-Pak/history">PAK Andrew</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>161</td>
+                <td></td>
+                <td>D25</td>
+                <td>259</td>
+                <td>Jacksonville Fencing Club</td>
+                <td>1433</td>
+                <td>1386</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 21.5
+                        
+                    
+                </td>
+                <td>
+                        47%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>3:5</td>
+                <td>
+                
+                    <a href="/p/100281570/Nicholas-Welstead/history">WELSTEAD Nicholas</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>244</td>
+                <td></td>
+                <td>E23</td>
+                <td>260</td>
+                <td>Dynamo Fencing Center Inc.</td>
+                <td>1662</td>
+                <td>1407</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 13.7
+                        
+                    
+                </td>
+                <td>
+                        34%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>0:5</td>
+                <td>
+                
+                    <a href="/p/100205076/Devyn-Anthony/history">ANTHONY Devyn V.</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>5</td>
+                <td>6</td>
+                <td>A24</td>
+                <td>2</td>
+                <td>Peter Westbrook Foundation / Tim Morehouse Fencing Club</td>
+                <td>2688</td>
+                <td>1394</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 1.0
+                        
+                    
+                </td>
+                <td>
+                        2%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100316011/Mason-Minasian/history">MINASIAN Mason</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>88</td>
+                <td>96</td>
+                <td>U</td>
+                <td>105</td>
+                <td>Spartak</td>
+                <td>1791</td>
+                <td>1393</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 10.6
+                        
+                    
+                </td>
+                <td>
+                        26%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>Scarsdale Fencing Youth and Senior Cup #1</h4>
+    <h5>
+        <a href="/event/32794/results">Mixed Saber</a>
+        (A2),
+        June 1, 2025
+    </h5>
+    <h6>
+        Place 15 of 26,
+        Seed 25,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    <a href="/p/100321948/Benjamin-Sheynzon/history">SHEYNZON Benjamin</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>23</td>
+                <td></td>
+                <td>E25</td>
+                <td>22</td>
+                <td>Scarsdale Fencing Center</td>
+                <td>1580</td>
+                <td>1403</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 27.6
+                        
+                    
+                </td>
+                <td>
+                        39%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square "
+                                        data-tt="">V</span></td>
+                <td>5:1</td>
+                <td>
+                
+                    <a href="/p/100252461/Catalina-Berrios/history">BERRIOS Catalina</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>8</td>
+                <td></td>
+                <td>C25</td>
+                <td>26</td>
+                <td>Scarsdale Fencing Center / Fencers Club Inc.</td>
+                <td></td>
+                <td></td>
+                <td>
+                    
+                </td>
+                <td>
+                        
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square "
+                                        data-tt="">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100214830/Catelyn-So/history">SO Catelyn</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>1</td>
+                <td></td>
+                <td>A25</td>
+                <td>6</td>
+                <td>Scarsdale Fencing Center / Fencers Club Inc.</td>
+                <td></td>
+                <td></td>
+                <td>
+                    
+                </td>
+                <td>
+                        
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>3:5</td>
+                <td>
+                
+                    <a href="/p/100219722/Kyle-Alave/history">ALAVE Kyle</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>9</td>
+                <td></td>
+                <td>C25</td>
+                <td>2</td>
+                <td>Cobra Fencing Club LLC</td>
+                <td>1946</td>
+                <td>1430</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 9.4
+                        
+                    
+                </td>
+                <td>
+                        20%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square "
+                                        data-tt="">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100265065/Nandini-Bains/history">BAINS Nandini</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>17</td>
+                <td></td>
+                <td>D23</td>
+                <td>18</td>
+                <td>Scarsdale Fencing Center / Peter Westbrook Foundation</td>
+                <td></td>
+                <td></td>
+                <td>
+                    
+                </td>
+                <td>
+                        
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>1:5</td>
+                <td>
+                
+                    <a href="/p/100358666/Andrew-Wasco/history">WASCO Andrew</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>16</td>
+                <td></td>
+                <td>D25</td>
+                <td>9</td>
+                <td>Stamford Fencing Center, LLC</td>
+                <td>1641</td>
+                <td>1421</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 15.6
+                        
+                    
+                </td>
+                <td>
+                        36%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T32
+                    </td>
+
+                <td class="text-center"><span class="square "
+                                        data-tt="">V</span></td>
+                <td>15:9</td>
+                <td>
+                
+                    <a href="/p/100265065/Nandini-Bains/history">BAINS Nandini</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>17</td>
+                <td></td>
+                <td>D23</td>
+                <td>18</td>
+                <td>Scarsdale Fencing Center / Peter Westbrook Foundation</td>
+                <td></td>
+                <td></td>
+                <td>
+                    
+                </td>
+                <td>
+                        
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T16
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>8:15</td>
+                <td>
+                
+                    <a href="/p/100264139/Sebastian-Sage/history">SAGE Sebastian</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>5</td>
+                <td></td>
+                <td>B25</td>
+                <td>5</td>
+                <td>Scarsdale Fencing Center</td>
+                <td>2371</td>
+                <td>1508</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 24.6
+                        
+                    
+                </td>
+                <td>
+                        10%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>Duel of the East Coast ROC/RJCC/RYC</h4>
+    <h5>
+        <a href="/event/32178/results">Junior Men's Saber</a>
+        (B2/C3, JNR),
+        May 4, 2025
+    </h5>
+    <h6>
+        Place 58 of 69,
+        Seed 59,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">V</span></td>
+                <td>5:0</td>
+                <td>
+                
+                    <a href="/p/100281995/Arya-Rajmohan/history">RAJMOHAN Arya</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>61</td>
+                <td></td>
+                <td>U</td>
+                <td>62</td>
+                <td>Cobra Fencing Club LLC</td>
+                <td>1561</td>
+                <td>1458</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 29.0
+                        
+                    
+                </td>
+                <td>
+                        43%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100303142/Severian-Ekong-Reid/history">EKONG-REID Severian</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>43</td>
+                <td></td>
+                <td>E25</td>
+                <td>27</td>
+                <td>Advance Fencing And Fitness Academy</td>
+                <td>1557</td>
+                <td>1487</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 22.3
+                        
+                    
+                </td>
+                <td>
+                        45%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100203437/Griffin-Atwood/history">ATWOOD Griffin</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>2</td>
+                <td>174</td>
+                <td>C24</td>
+                <td>21</td>
+                <td>International Fencing Club</td>
+                <td>2189</td>
+                <td>1465</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 6.7
+                        
+                    
+                </td>
+                <td>
+                        12%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>1:5</td>
+                <td>
+                
+                    <a href="/p/100671643/William-Dreyer/history">DREYER William</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>39</td>
+                <td></td>
+                <td>E25</td>
+                <td>10</td>
+                <td>Mission Fencing Center</td>
+                <td>1668</td>
+                <td>1458</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 17.6
+                        
+                    
+                </td>
+                <td>
+                        37%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>1:5</td>
+                <td>
+                
+                    <a href="/p/100314949/Christoffer-Lamtan/history">LAMTAN Christoffer</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>19</td>
+                <td></td>
+                <td>D25</td>
+                <td>28</td>
+                <td>Manhattan Fencing Center</td>
+                <td>1765</td>
+                <td>1441</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 14.3
+                        
+                    
+                </td>
+                <td>
+                        30%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>3:5</td>
+                <td>
+                
+                    <a href="/p/100346450/Nolan-Chien/history">CHIEN Nolan</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>18</td>
+                <td></td>
+                <td>D25</td>
+                <td>51</td>
+                <td>Durkan Fencing Academy</td>
+                <td>1402</td>
+                <td>1426</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 23.4
+                        
+                    
+                </td>
+                <td>
+                        52%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T64
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>8:15</td>
+                <td>
+                
+                    <a href="/p/100264139/Sebastian-Sage/history">SAGE Sebastian</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>34</td>
+                <td></td>
+                <td>E25</td>
+                <td>1</td>
+                <td>Scarsdale Fencing Center</td>
+                <td>2313</td>
+                <td>1540</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 32.1
+                        
+                    
+                </td>
+                <td>
+                        12%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>Duel of the East Coast ROC/RJCC/RYC</h4>
+    <h5>
+        <a href="/event/32104/results">Cadet Men's Saber</a>
+        (C2, CDT),
+        May 3, 2025
+    </h5>
+    <h6>
+        Place 35 of 59,
+        Seed 49,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">V</span></td>
+                <td>5:3</td>
+                <td>
+                
+                    <a href="/p/100255084/Aram-Clark/history">CLARK Aram</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>14</td>
+                <td></td>
+                <td>D25</td>
+                <td>5</td>
+                <td>Tim Morehouse Fencing Club</td>
+                <td>2039</td>
+                <td>1326</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 64.6
+                        
+                    
+                </td>
+                <td>
+                        12%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100281995/Arya-Rajmohan/history">RAJMOHAN Arya</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>50</td>
+                <td></td>
+                <td>U</td>
+                <td>16</td>
+                <td>Cobra Fencing Club LLC</td>
+                <td>1582</td>
+                <td>1391</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 22.7
+                        
+                    
+                </td>
+                <td>
+                        38%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">V</span></td>
+                <td>5:1</td>
+                <td>
+                
+                    <a href="/p/100299516/Leo-Suh/history">SUH Leo</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>32</td>
+                <td></td>
+                <td>E24</td>
+                <td>42</td>
+                <td>Manhattan Fencing Center</td>
+                <td>1476</td>
+                <td>1368</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 33.0
+                        
+                    
+                </td>
+                <td>
+                        43%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">V</span></td>
+                <td>5:2</td>
+                <td>
+                
+                    <a href="/p/100343522/Peter%20(Pete)-Tasikas/history">TASIKAS Peter</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>42</td>
+                <td></td>
+                <td>U</td>
+                <td>51</td>
+                <td>Rochester Fencing Club</td>
+                <td>1478</td>
+                <td>1401</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 30.6
+                        
+                    
+                </td>
+                <td>
+                        45%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">V</span></td>
+                <td>5:3</td>
+                <td>
+                
+                    <a href="/p/100338192/William-Wei/history">WEI William</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>31</td>
+                <td></td>
+                <td>E24</td>
+                <td>30</td>
+                <td>Allegro Fencing Center</td>
+                <td>1709</td>
+                <td>1431</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 37.2
+                        
+                    
+                </td>
+                <td>
+                        32%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>0:5</td>
+                <td>
+                
+                    <a href="/p/100274523/Finn-McDonald/history">MCDONALD Finn</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>5</td>
+                <td></td>
+                <td>C24</td>
+                <td>2</td>
+                <td>Delaware Valley Fencers Club-PA</td>
+                <td>2030</td>
+                <td>1469</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 10.4
+                        
+                    
+                </td>
+                <td>
+                        18%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T64
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>8:15</td>
+                <td>
+                
+                    <a href="/p/100281995/Arya-Rajmohan/history">RAJMOHAN Arya</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>50</td>
+                <td></td>
+                <td>U</td>
+                <td>16</td>
+                <td>Cobra Fencing Club LLC</td>
+                <td>1717</td>
+                <td>1656</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 116.1
+                        
+                    
+                </td>
+                <td>
+                        46%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>American Challenge SYC/RJCC</h4>
+    <h5>
+        <a href="/event/31774/results">Junior Men's Saber</a>
+        (B3, JNR),
+        April 20, 2025
+    </h5>
+    <h6>
+        Place 82 of 108,
+        Seed 87,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">V</span></td>
+                <td>5:3</td>
+                <td>
+                
+                    <a href="/p/100352358/Kevin-Greene/history">GREENE Kevin</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>74</td>
+                <td></td>
+                <td>E24</td>
+                <td>97</td>
+                <td>Lilov Fencing Academy / Masters Fencing Academy NJ</td>
+                <td>1555</td>
+                <td>1258</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 52.6
+                        
+                    
+                </td>
+                <td>
+                        32%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>3:5</td>
+                <td>
+                
+                    <a href="/p/100240167/Daniel-Posy/history">POSY Daniel</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>38</td>
+                <td></td>
+                <td>C23</td>
+                <td>11</td>
+                <td>Manhattan Fencing Center</td>
+                <td>2277</td>
+                <td>1311</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 5.6
+                        
+                    
+                </td>
+                <td>
+                        6%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>0:5</td>
+                <td>
+                
+                    <a href="/p/100301163/Jose-Valencia/history">VALENCIA Jose</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-ec" title="ECU"></span>
+                    
+                </td>
+                <td>23</td>
+                <td></td>
+                <td>C25</td>
+                <td>14</td>
+                <td>Capital Fencing Academy</td>
+                <td>2009</td>
+                <td>1305</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 10.6
+                        
+                    
+                </td>
+                <td>
+                        13%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">V</span></td>
+                <td>5:3</td>
+                <td>
+                
+                    <a href="/p/100258731/Vedh-Srivats/history">SRIVATS Vedh</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>55</td>
+                <td></td>
+                <td>D24</td>
+                <td>72</td>
+                <td>Tim Morehouse Fencing Club</td>
+                <td>1977</td>
+                <td>1294</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 69.8
+                        
+                    
+                </td>
+                <td>
+                        13%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100236011/William-Wang/history">WANG William</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>10</td>
+                <td>140</td>
+                <td>C24</td>
+                <td>33</td>
+                <td>Midwest Fencing Club</td>
+                <td>2232</td>
+                <td>1364</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 6.6
+                        
+                    
+                </td>
+                <td>
+                        8%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>3:5</td>
+                <td>
+                
+                    <a href="/p/100356387/Dhruv-Amagowni/history">AMAGOWNI Dhruv</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>102</td>
+                <td></td>
+                <td>U</td>
+                <td>93</td>
+                <td>Advance Fencing And Fitness Academy</td>
+                <td>1367</td>
+                <td>1358</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 31.7
+                        
+                    
+                </td>
+                <td>
+                        49%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T128
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>7:15</td>
+                <td>
+                
+                    <a href="/p/100216330/Brandon-Lim/history">LIM Brandon</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>33</td>
+                <td></td>
+                <td>C24</td>
+                <td>50</td>
+                <td>Allegro Fencing Center</td>
+                <td>2036</td>
+                <td>1756</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 100.3
+                        
+                    
+                </td>
+                <td>
+                        34%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>American Challenge SYC/RJCC</h4>
+    <h5>
+        <a href="/event/31700/results">Cadet Men's Saber</a>
+        (B2/C3, CDT),
+        April 19, 2025
+    </h5>
+    <h6>
+        Place 116 of 125,
+        Seed 108,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100333512/Sam-Firoozi/history">FIROOZI Sam</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>38</td>
+                <td></td>
+                <td>E25</td>
+                <td>37</td>
+                <td>Manhattan Fencing Center</td>
+                <td>1531</td>
+                <td>1441</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 42.7
+                        
+                    
+                </td>
+                <td>
+                        44%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100319184/Felix-Chen/history">CHEN Felix</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-ca" title="CAN"></span>
+                    
+                </td>
+                <td>74</td>
+                <td></td>
+                <td>U</td>
+                <td>77</td>
+                <td>Axis Fencing Club</td>
+                <td>1442</td>
+                <td>1398</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 41.9
+                        
+                    
+                </td>
+                <td>
+                        47%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100810764/Michael-Li/history">LI Michael</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>106</td>
+                <td></td>
+                <td>U</td>
+                <td>58</td>
+                <td>Premier Fencing Club</td>
+                <td>1397</td>
+                <td>1356</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 40.9
+                        
+                    
+                </td>
+                <td>
+                        47%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100277385/Alex-Wang/history">WANG Alex</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>35</td>
+                <td></td>
+                <td>D25</td>
+                <td>30</td>
+                <td>Globus Fencing Academy</td>
+                <td>1694</td>
+                <td>1315</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 23.4
+                        
+                    
+                </td>
+                <td>
+                        27%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100296615/Maxim-Lin/history">LIN Maxim</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>2</td>
+                <td>22</td>
+                <td>A25</td>
+                <td>5</td>
+                <td>International Fencing Club</td>
+                <td>2502</td>
+                <td>1292</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 3.0
+                        
+                    
+                </td>
+                <td>
+                        3%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100311220/Leo-Shapiro/history">SHAPIRO Leo</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>70</td>
+                <td></td>
+                <td>U</td>
+                <td>96</td>
+                <td>Tim Morehouse Fencing Club</td>
+                <td>1465</td>
+                <td>1289</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 30.9
+                        
+                    
+                </td>
+                <td>
+                        39%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T128
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>4:15</td>
+                <td>
+                
+                    <a href="/p/100216681/Dylan-Ong/history">ONG Dylan</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>21</td>
+                <td>110</td>
+                <td>E24</td>
+                <td>3</td>
+                <td>International Fencing Club</td>
+                <td>1990</td>
+                <td>1912</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 155.6
+                        
+                    
+                </td>
+                <td>
+                        46%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>Capitol Clash SYC/RCC & Y8</h4>
+    <h5>
+        <a href="/event/29350/results">Cadet Men's Saber</a>
+        (B2/C3, CDT),
+        January 19, 2025
+    </h5>
+    <h6>
+        Place 93 of 134,
+        Seed 132,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100241259/Ryan-Liu/history">LIU Ryan</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>68</td>
+                <td></td>
+                <td>E24</td>
+                <td>14</td>
+                <td>Manhattan Fencing Center</td>
+                <td>1656</td>
+                <td>1455</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 55.8
+                        
+                    
+                </td>
+                <td>
+                        38%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100285770/William-Crawford/history">CRAWFORD William</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>53</td>
+                <td></td>
+                <td>E24</td>
+                <td>73</td>
+                <td>Zeta Fencing</td>
+                <td>1385</td>
+                <td>1400</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 68.8
+                        
+                    
+                </td>
+                <td>
+                        51%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100271309/Daniel-Breuer/history">BREUER Daniel</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>28</td>
+                <td>140</td>
+                <td>E24</td>
+                <td>88</td>
+                <td>Nazlymov Fencing Foundation</td>
+                <td>1765</td>
+                <td>1331</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 32.8
+                        
+                    
+                </td>
+                <td>
+                        25%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>3:5</td>
+                <td>
+                
+                    <a href="/p/100314052/Brendan-Lin/history">LIN Brendan</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>97</td>
+                <td></td>
+                <td>U</td>
+                <td>31</td>
+                <td>Cobra Fencing Club LLC</td>
+                <td>1758</td>
+                <td>1298</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 29.6
+                        
+                    
+                </td>
+                <td>
+                        23%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">V</span></td>
+                <td>5:2</td>
+                <td>
+                
+                    <a href="/p/100288884/Justin-Yang/history">YANG Justin</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>106</td>
+                <td></td>
+                <td>U</td>
+                <td>90</td>
+                <td>Alpha Fencing Academy</td>
+                <td>1400</td>
+                <td>1268</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 65.9
+                        
+                    
+                </td>
+                <td>
+                        42%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    <a href="/p/100313746/Chase-Kitson/history">KITSON Chase</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>13</td>
+                <td>89</td>
+                <td>C24</td>
+                <td>75</td>
+                <td>Globus Fencing Academy</td>
+                <td>2044</td>
+                <td>1334</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 106.6
+                        
+                    
+                </td>
+                <td>
+                        13%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T128
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>10:15</td>
+                <td>
+                
+                    <a href="/p/100273617/Kaixuan-Zhang/history">ZHANG Kaixuan</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>39</td>
+                <td></td>
+                <td>D25</td>
+                <td>28</td>
+                <td>Globus Fencing Academy</td>
+                <td>2133</td>
+                <td>2120</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 207.7
+                        
+                    
+                </td>
+                <td>
+                        49%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>Morris Cup RYC/RJCC</h4>
+    <h5>
+        <a href="/event/28432/results">Cadet Men's Saber</a>
+        (C2, CDT),
+        December 14, 2024
+    </h5>
+    <h6>
+        Place 56 of 89,
+        Seed 60,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>0:5</td>
+                <td>
+                
+                    <a href="/p/100336335/Lucas-Henderson/history">HENDERSON Lucas</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-ca" title="CAN"></span>
+                    
+                </td>
+                <td>7</td>
+                <td>106</td>
+                <td>E24</td>
+                <td>6</td>
+                <td>Tim Morehouse Fencing Club / Axis Fencing Club</td>
+                <td>1999</td>
+                <td>1678</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 87.3
+                        
+                    
+                </td>
+                <td>
+                        32%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100255254/Nathaniel-Ng/history">NG Nathaniel</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>47</td>
+                <td></td>
+                <td>U</td>
+                <td>50</td>
+                <td>Cobra Fencing Club LLC</td>
+                <td>1748</td>
+                <td>1590</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 95.9
+                        
+                    
+                </td>
+                <td>
+                        41%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    <a href="/p/100309203/Karanvir-jain/history">JAIN Karanvir</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>34</td>
+                <td></td>
+                <td>E24</td>
+                <td>14</td>
+                <td>Manhattan Fencing Center / Manhattan Fencing of Englewood</td>
+                <td>1454</td>
+                <td>1494</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 99.4
+                        
+                    
+                </td>
+                <td>
+                        52%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square hard"
+                                        data-tt="Hard">D</span></td>
+                <td>3:5</td>
+                <td>
+                
+                    <a href="/p/100252329/Henry-Ciemins/history">CIEMINS Henry</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>20</td>
+                <td></td>
+                <td>D24</td>
+                <td>10</td>
+                <td>Advance Fencing And Fitness Academy</td>
+                <td>1845</td>
+                <td>1594</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 66.4
+                        
+                    
+                </td>
+                <td>
+                        35%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100309192/Aaron-Taycher/history">TAYCHER Aaron</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>58</td>
+                <td></td>
+                <td>U</td>
+                <td>72</td>
+                <td>Dynamo Fencing Center Inc.</td>
+                <td>1438</td>
+                <td>1527</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 94.2
+                        
+                    
+                </td>
+                <td>
+                        55%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-easy"
+                                        data-tt="Very Easy">V</span></td>
+                <td>5:0</td>
+                <td>
+                
+                    <a href="/p/100357928/Ishir-Kulkarni/history">KULKARNI Ishir</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>88</td>
+                <td></td>
+                <td>U</td>
+                <td>87</td>
+                <td>Fencing Academy Of Philadelphia - University City</td>
+                <td>686</td>
+                <td>1433</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 22.3
+                        
+                    
+                </td>
+                <td>
+                        87%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T128
+                    </td>
+
+                <td class="text-center"><span class="square very-easy"
+                                        data-tt="Very Easy">V</span></td>
+                <td>15:9</td>
+                <td>
+                
+                    <a href="/p/100599072/Alexander%20(Xander)-Perry/history">PERRY Xander</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>51</td>
+                <td></td>
+                <td>U</td>
+                <td>74</td>
+                <td>Lilov Fencing Academy</td>
+                <td>923</td>
+                <td>2341</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 38.7
+                        
+                    
+                </td>
+                <td>
+                        94%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T64
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>6:15</td>
+                <td>
+                
+                    <a href="/p/100228798/Alexander-Shipitsin/history">SHIPITSIN Alexander</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>4</td>
+                <td>86</td>
+                <td>C24</td>
+                <td>3</td>
+                <td>Dynamo Fencing Center Inc.</td>
+                <td>2419</td>
+                <td>2380</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 260.3
+                        
+                    
+                </td>
+                <td>
+                        48%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>Mission SYC</h4>
+    <h5>
+        <a href="/event/24105/results">Y-14 Men's Saber</a>
+        (B2, Y14),
+        May 4, 2024
+    </h5>
+    <h6>
+        Place 50 of 103,
+        Seed 88,
+        Not ranked,
+        Rating U, Scarsdale Fencing Center
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-easy"
+                                        data-tt="Very Easy">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100302308/Max-Trzepla/history">TRZEPLA Max</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>28</td>
+                <td>168</td>
+                <td>U</td>
+                <td>37</td>
+                <td>National Fencing Alliance-LLC</td>
+                <td>1591</td>
+                <td>2500</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 973.3
+                        
+                    
+                </td>
+                <td>
+                        81%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    <a href="/p/100271248/Timothy-Chang/history">CHANG Timothy</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>66</td>
+                <td></td>
+                <td>U</td>
+                <td>76</td>
+                <td>Tim Morehouse Fencing Club</td>
+                <td>1446</td>
+                <td>1527</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 295.9
+                        
+                    
+                </td>
+                <td>
+                        54%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-easy"
+                                        data-tt="Very Easy">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    <a href="/p/100305370/Matthew-Burenkov/history">BURENKOV Matthew</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>58</td>
+                <td></td>
+                <td>U</td>
+                <td>99</td>
+                <td>Zeta Fencing</td>
+                <td>1013</td>
+                <td>1823</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 81.5
+                        
+                    
+                </td>
+                <td>
+                        85%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square easy"
+                                        data-tt="Easy">D</span></td>
+                <td>4:5</td>
+                <td>
+                
+                    <a href="/p/100271072/Carson-Liebowitz/history">LIEBOWITZ Carson</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>33</td>
+                <td>184</td>
+                <td>U</td>
+                <td>34</td>
+                <td>Manhattan Fencing Center</td>
+                <td>1561</td>
+                <td>1904</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 299.9
+                        
+                    
+                </td>
+                <td>
+                        68%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square easy"
+                                        data-tt="Easy">V</span></td>
+                <td>5:1</td>
+                <td>
+                
+                    <a href="/p/100321521/Theo-Brooks/history">BROOKS Theo</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>92</td>
+                <td></td>
+                <td>U</td>
+                <td>94</td>
+                <td>Capital Fencing Academy</td>
+                <td>1330</td>
+                <td>1604</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 118.8
+                        
+                    
+                </td>
+                <td>
+                        65%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square very-hard"
+                                        data-tt="Very Hard">D</span></td>
+                <td>2:5</td>
+                <td>
+                
+                    <a href="/p/100296172/Jonathan-Ng/history">NG Jonathan</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>3</td>
+                <td>23</td>
+                <td>C24</td>
+                <td>2</td>
+                <td>Durkan Fencing Academy</td>
+                <td>2484</td>
+                <td>1723</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 45.4
+                        
+                    
+                </td>
+                <td>
+                        14%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T128
+                    </td>
+
+                <td class="text-center"><span class="square easy"
+                                        data-tt="Easy">V</span></td>
+                <td>15:5</td>
+                <td>
+                
+                    <a href="/p/100298629/Marcus-Avery/history">AVERY Marcus</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>50</td>
+                <td></td>
+                <td>U</td>
+                <td>79</td>
+                <td>Tim Morehouse Fencing Club</td>
+                <td>1900</td>
+                <td>2500</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 315.9
+                        
+                    
+                </td>
+                <td>
+                        72%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T64
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>4:15</td>
+                <td>
+                
+                    <a href="/p/100234448/Rayn-Patel/history">PATEL Rayn</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>1</td>
+                <td>9</td>
+                <td>B24</td>
+                <td>7</td>
+                <td>Capital Fencing Academy</td>
+                <td>2650</td>
+                <td>2816</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 474.6
+                        
+                    
+                </td>
+                <td>
+                        57%
+                    
+                </td>
+            </tr>
+    
+        
+            
+                
+            </tbody>
+        </table>
+    </div>
+                
+            
+            
+    <h4>Fairfax Challenge Winter RYC & RJCC</h4>
+    <h5>
+        <a href="/event/2502/results">Y-10 Men's Foil</a>
+        (U, Y10),
+        December 29, 2019
+    </h5>
+    <h6>
+        Place 12 of 19,
+        Seed 9,
+        Not ranked,
+        Rating U
+    </h6>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bout</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Opponent</th>
+                    <th></th>
+                    <th>Seed</th>
+                    <th>Rank</th>
+                    <th>Rating</th>
+                    <th>Place</th>
+                    <th>Club</th>
+
+                    <th>Opponent<br />Strength</th>
+                    <th>Strength</th>
+                    <th>Change</th>
+                    <th>Chance of<br />Victory</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>0:5</td>
+                <td>
+                
+                    <a href="/p/100215991/William-Kokes/history">KOKES William</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>3</td>
+                <td>18</td>
+                <td>U</td>
+                <td>7</td>
+                <td>Fencers Club Inc.</td>
+                <td>2315</td>
+                <td>2500</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 619.4
+                        
+                    
+                </td>
+                <td>
+                        57%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">D</span></td>
+                <td>1:5</td>
+                <td>
+                
+                    <a href="/p/100226713/Alex-Zhang/history">ZHANG Alex</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>4</td>
+                <td>18</td>
+                <td>U</td>
+                <td>6</td>
+                <td>Baltimore Fencing Center</td>
+                <td>2036</td>
+                <td>1881</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 307.9
+                        
+                    
+                </td>
+                <td>
+                        43%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square easy"
+                                        data-tt="Easy">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    <a href="/p/100282357/Andy-Jin/history">JIN Andy</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>17</td>
+                <td></td>
+                <td>U</td>
+                <td>17</td>
+                <td>Advanced International Fencing Club</td>
+                <td>1223</td>
+                <td>1573</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 175.8
+                        
+                    
+                </td>
+                <td>
+                        66%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square easy"
+                                        data-tt="Easy">D</span></td>
+                <td>1:5</td>
+                <td>
+                
+                    <a href="/p/100261971/Thomas-Griffith%20McAllister/history">MCALLISTER thomas</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>15</td>
+                <td></td>
+                <td>U</td>
+                <td>5</td>
+                <td>Fencing Sports Academy, Inc.</td>
+                <td>1230</td>
+                <td>1748</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 344.6
+                        
+                    
+                </td>
+                <td>
+                        75%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        Pool
+                    </td>
+
+                <td class="text-center"><span class="square even"
+                                        data-tt="Roughly Even">V</span></td>
+                <td>5:4</td>
+                <td>
+                
+                    <a href="/p/100248535/Ivan-Penton/history">PENTON Ivan</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>16</td>
+                <td></td>
+                <td>U</td>
+                <td>19</td>
+                <td>Fencing Sports Academy, Inc.</td>
+                <td>1288</td>
+                <td>1404</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-up-fill sk-increase"></i> 149.2
+                        
+                    
+                </td>
+                <td>
+                        56%
+                    
+                </td>
+            </tr>
+    
+        
+            <tr>
+                <td>
+                        T16
+                    </td>
+
+                <td class="text-center"><span class="square easy"
+                                        data-tt="Easy">D</span></td>
+                <td>3:10</td>
+                <td>
+                
+                    <a href="/p/100226713/Alex-Zhang/history">ZHANG Alex</a>
+                </td>
+                <td>
+                        <span class="flag-icon flag-icon-us" title="USA"></span>
+                    
+                </td>
+                <td>4</td>
+                <td>18</td>
+                <td>U</td>
+                <td>6</td>
+                <td>Baltimore Fencing Center</td>
+                <td>2098</td>
+                <td>2500</td>
+                <td>
+                    
+                        
+                            <i class="bi-caret-down-fill sk-decrease"></i> 709.4
+                        
+                    
+                </td>
+                <td>
+                        65%
+                    
+                </td>
+            </tr>
+    
+            </tbody>
+        </table>
+    </div>
+
+
+
+    </div>
+</div>
+
+    </div>
+    <!-- End Top Leaderboard -->
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-muted">© 2020-2026 FencingTracker</p>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="/privacy" class="nav-link px-2 text-muted">Privacy Policy</a></li>
+                <li class="nav-item"><a href="/contact" class="nav-link px-2 text-muted">Contact</a></li>
+                <li class="nav-item"><a href="/faq" class="nav-link px-2 text-muted">FAQs</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link px-2 text-muted">About</a></li>
+            </ul>
+        </footer>
+    </div>
+
+</body>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" id="discordToast" data-bs-autohide="false">
+        <div class="d-flex">
+            <div class="toast-body">
+                Want to keep up with all things fencingtracker? Join our Discord community <a href="/discord">here</a>.
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const toast = document.getElementById('discordToast')
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast)
+
+    toast.addEventListener('hidden.bs.toast', function () {
+        localStorage.setItem('discordToast', 'hidden')
+    })
+
+    
+</script>
+</html>
