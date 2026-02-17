@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 """
-FencingTracker Scraper — collects bout-level data from fencingtracker.com
-Focuses on Senior Mixed events (epee, foil, saber).
+FencingTracker Scraper v2 — collects bout-level data from fencingtracker.com
+
+Population: All fencers who competed in Division I, IA, II, or III events
+at the 2024 Summer Nationals (tournament 1041).
+
+Data: All bouts in calendar year 2024 for each fencer in the population.
 """
 
 import csv
@@ -9,7 +13,6 @@ import os
 import re
 import time
 import hashlib
-from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
@@ -19,46 +22,58 @@ from bs4 import BeautifulSoup
 BASE_URL = "https://fencingtracker.com"
 DELAY = 2  # seconds between requests
 CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cache")
-OUTPUT_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fencingtracker_bouts.csv")
+OUTPUT_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fencingtracker_bouts_2024.csv")
 
 HEADERS = {
     "User-Agent": "FencingResearchBot/1.0 (academic research; rate-limited)",
     "Accept": "text/html",
 }
 
-# Seed event IDs — Senior Mixed events across weapons
-SEED_EVENTS = [
-    # Epee
-    34995,  # AFM Open Senior Mixed Epee (61 fencers, Oct 2025)
-    31137,  # Fence Fest Senior Mixed Epee (25 fencers, Mar 2025)
-    # Foil
-    19911,  # GT Collegiate: Fall Hack & Slash Senior Mixed Foil (31 fencers, Nov 2023)
-    14652,  # Hangover Open Walk N Roll Senior Mixed Foil (25 fencers, Jan 2023)
-    26415,  # Back to School Open Senior Mixed Foil (24 fencers, Sep 2024)
-    33431,  # Weekend Warrior I Senior Mixed Foil (22 fencers, Aug 2025)
-    33948,  # AIC Foil Open Senior Mixed Foil (15 fencers, Sep 2025)
-    34935,  # SAS Foil and Epee Open Senior Mixed Foil (15 fencers, Oct 2025)
-    33320,  # Steel Clash Senior Mixed Foil (5 fencers)
-    # Saber
-    31694,  # 57th Annual Green Gator Senior Mixed Saber (30 fencers, Apr 2025)
-    29857,  # Texas Fencing Academy Cup 3 Senior Mixed Saber (28 fencers, Feb 2025)
-    32794,  # Scarsdale Fencing Cup #1 Mixed Saber (26 fencers, Jun 2025)
-    33090,  # Shoreline Pre-Nat Open Senior Mixed Saber (19 fencers, Jun 2025)
-    31984,  # Sebastian Ramirez Amaya Memorial Senior Mixed Saber (18 fencers, Apr 2025)
-    32442,  # Attila Petschauer Senior Mixed Saber (7 fencers)
-    30480,  # Sebastiani Spring Senior Mixed Saber (2 fencers)
-]
+# 2024 Summer Nationals — Division I, IA, II, III events
+# Extracted from https://fencingtracker.com/tournament/1041
+SUMMER_NATIONALS_EVENTS = {
+    # Division I
+    10999: {"division": "I",  "gender": "F", "weapon": "epee",  "event_code": "DV1WE"},
+    11002: {"division": "I",  "gender": "M", "weapon": "epee",  "event_code": "DV1ME"},
+    11004: {"division": "I",  "gender": "M", "weapon": "saber", "event_code": "DV1MS"},
+    11012: {"division": "I",  "gender": "F", "weapon": "foil",  "event_code": "DV1WF"},
+    11048: {"division": "I",  "gender": "M", "weapon": "foil",  "event_code": "DV1MF"},
+    11049: {"division": "I",  "gender": "F", "weapon": "saber", "event_code": "DV1WS"},
+    # Division IA
+    11001: {"division": "IA", "gender": "F", "weapon": "saber", "event_code": "D1AWS"},
+    11026: {"division": "IA", "gender": "M", "weapon": "saber", "event_code": "D1AMS"},
+    11027: {"division": "IA", "gender": "F", "weapon": "epee",  "event_code": "D1AWE"},
+    11050: {"division": "IA", "gender": "M", "weapon": "epee",  "event_code": "D1AME"},
+    11051: {"division": "IA", "gender": "F", "weapon": "foil",  "event_code": "D1AWF"},
+    11053: {"division": "IA", "gender": "M", "weapon": "foil",  "event_code": "D1AMF"},
+    # Division II
+    11065: {"division": "II", "gender": "F", "weapon": "foil",  "event_code": "DV2WF"},
+    11067: {"division": "II", "gender": "M", "weapon": "epee",  "event_code": "DV2ME"},
+    11076: {"division": "II", "gender": "F", "weapon": "saber", "event_code": "DV2WS"},
+    11077: {"division": "II", "gender": "F", "weapon": "epee",  "event_code": "DV2WE"},
+    11079: {"division": "II", "gender": "M", "weapon": "saber", "event_code": "DV2MS"},
+    11086: {"division": "II", "gender": "M", "weapon": "foil",  "event_code": "DV2MF"},
+    # Division III
+    11062: {"division": "III", "gender": "F", "weapon": "epee",  "event_code": "DV3WE"},
+    11075: {"division": "III", "gender": "F", "weapon": "foil",  "event_code": "DV3WF"},
+    11085: {"division": "III", "gender": "M", "weapon": "epee",  "event_code": "DV3ME"},
+    11087: {"division": "III", "gender": "F", "weapon": "saber", "event_code": "DV3WS"},
+    11088: {"division": "III", "gender": "M", "weapon": "foil",  "event_code": "DV3MF"},
+    11091: {"division": "III", "gender": "M", "weapon": "saber", "event_code": "DV3MS"},
+}
 
 # CSV columns
 CSV_COLUMNS = [
-    "bout_id", "tournament_name", "event_id", "event_name", "weapon", "date", "location",
-    "fencer_1_name", "fencer_1_id", "fencer_1_rating", "fencer_1_elo_pool_before",
-    "fencer_1_elo_pool_after", "fencer_1_elo_de_before", "fencer_1_elo_de_after",
-    "fencer_1_birth_year", "fencer_1_club", "fencer_1_place",
-    "fencer_2_name", "fencer_2_id", "fencer_2_rating", "fencer_2_elo_pool_before",
-    "fencer_2_elo_pool_after", "fencer_2_elo_de_before", "fencer_2_elo_de_after",
-    "fencer_2_birth_year", "fencer_2_club", "fencer_2_place",
-    "winner", "score", "bout_type",
+    "bout_id",
+    "tournament_name", "event_id", "event_name", "weapon", "date",
+    "fencer_name", "fencer_id", "fencer_gender", "fencer_rating",
+    "fencer_birth_year", "fencer_club",
+    "opponent_name", "opponent_id", "opponent_gender",
+    "opponent_rating", "opponent_elo", "opponent_club",
+    "fencer_elo",
+    "result", "score", "bout_type", "bout_type_raw",
+    "is_de", "win_probability",
+    "fencer_divisions",
 ]
 
 
@@ -96,180 +111,55 @@ def fetch_page(url):
 
 # ── Parsers ──────────────────────────────────────────────────────────────────
 
-def parse_event_metadata(html):
-    """Extract event name, weapon, date, location from the results page."""
-    soup = BeautifulSoup(html, "html.parser")
-    title_tag = soup.find("title")
-    title_text = title_tag.text.strip() if title_tag else ""
+def parse_event_fencers(html):
+    """Extract fencer IDs, names, and profile URLs from an event page.
 
-    # Title format: "Results of Senior Mixed Épée - AFM Open ... - FencingTracker"
-    parts = title_text.split(" - ")
-    event_name = parts[0].replace("Results of ", "").strip() if parts else ""
-    tournament_name = parts[1].strip() if len(parts) > 1 else ""
-
-    # Weapon detection from event name
-    weapon = ""
-    name_lower = event_name.lower()
-    if "epee" in name_lower or "épée" in name_lower:
-        weapon = "epee"
-    elif "foil" in name_lower:
-        weapon = "foil"
-    elif "saber" in name_lower or "sabre" in name_lower:
-        weapon = "saber"
-
-    # Date: look for h4 tag with date
-    date_str = ""
-    for h4 in soup.find_all("h4"):
-        text = h4.get_text(strip=True)
-        # Pattern: "Sunday, October 19, 2025 at 9:00 AM"
-        if re.search(r'\b\d{4}\b', text) and ('AM' in text or 'PM' in text or re.search(r'\b(January|February|March|April|May|June|July|August|September|October|November|December)\b', text)):
-            date_str = text
-            break
-
-    # Location: in a <p> tag like "Academy of Fencing Masters - Sunnyvale, CA, USA"
-    location = ""
-    for p in soup.find_all("p"):
-        text = p.get_text(strip=True)
-        if re.search(r',\s*[A-Z]{2},\s*USA', text) and len(text) < 200:
-            location = text
-            break
-
-    return {
-        "event_name": event_name,
-        "tournament_name": tournament_name,
-        "weapon": weapon,
-        "date": date_str,
-        "location": location,
-    }
-
-
-def parse_event_results(html):
-    """Extract fencer info and bout results from the event results page.
-
-    Returns list of dicts with: name, fencer_id, profile_url, place,
-    and pool_bouts / de_bouts (lists of {result, score, opponent_name}).
+    The event page (not /results) lists fencers in a table with links to /p/{id}/{name}.
+    Returns list of dicts with: name, fencer_id, profile_url.
     """
     soup = BeautifulSoup(html, "html.parser")
-    table = soup.find("table", id="resultsTable")
-    if not table:
-        return []
 
     fencers = []
-    for row in table.find("tbody").find_all("tr"):
-        cells = row.find_all("td")
-        if len(cells) < 5:
-            continue
+    seen_ids = set()
 
-        place = cells[0].get_text(strip=True)
-        link = cells[1].find("a")
-        if not link:
-            continue
-
+    # Find all fencer profile links on the page (pattern: /p/{id}/{name})
+    for link in soup.find_all("a", href=re.compile(r'/p/\d+/')):
         href = link.get("href", "")
-        # /p/{id}/{Name}/history
         id_match = re.search(r'/p/(\d+)/', href)
-        fencer_id = id_match.group(1) if id_match else ""
-        name = link.get_text(strip=True)
+        if not id_match:
+            continue
 
-        # Pool bouts (cell 2) and DE bouts (cell 3) — span elements with data-tt
-        pool_bouts = _parse_bout_spans(cells[2])
-        de_bouts = _parse_bout_spans(cells[3])
+        fencer_id = id_match.group(1)
+        if fencer_id in seen_ids:
+            continue
+        seen_ids.add(fencer_id)
+
+        name = link.get_text(strip=True)
+        if not name:
+            continue
+
+        # Ensure profile URL ends with /history for bout data
+        profile_url = href.rstrip("/")
+        if not profile_url.endswith("/history"):
+            profile_url += "/history"
 
         fencers.append({
             "name": name,
             "fencer_id": fencer_id,
-            "profile_url": href,
-            "place": place,
-            "pool_bouts": pool_bouts,
-            "de_bouts": de_bouts,
+            "profile_url": profile_url,
         })
 
     return fencers
 
 
-def _parse_bout_spans(cell):
-    """Parse bout spans from a results table cell.
-
-    Each span has data-tt like '5:4 vs. GUIRAUDET Alistair - Very Easy'
-    and inner text V or D.
-    """
-    bouts = []
-    for span in cell.find_all("span", attrs={"data-tt": True}):
-        tt = span["data-tt"]
-        result = span.get_text(strip=True)  # V or D
-
-        # Parse "5:4 vs. GUIRAUDET Alistair - Very Easy"
-        m = re.match(r'(\d+:\d+)\s+vs\.\s+(.+?)\s*-\s*(.*)', tt)
-        if m:
-            score = m.group(1)
-            opponent = m.group(2).strip()
-            difficulty = m.group(3).strip()
-        else:
-            score, opponent, difficulty = tt, "", ""
-
-        bouts.append({
-            "result": result,
-            "score": score,
-            "opponent_name": opponent,
-            "difficulty": difficulty,
-        })
-    return bouts
-
-
-def parse_event_strength(html):
-    """Extract ELO/strength data from the strength page.
-
-    Returns dict keyed by fencer_id with pool_before, pool_after, de_before, de_after.
-    """
-    soup = BeautifulSoup(html, "html.parser")
-    table = soup.find("table", id="resultsTable")
-    if not table:
-        return {}
-
-    strengths = {}
-    for row in table.find("tbody").find_all("tr"):
-        cells = row.find_all("td")
-        if len(cells) < 7:
-            continue
-
-        link = cells[1].find("a")
-        if not link:
-            continue
-        href = link.get("href", "")
-        id_match = re.search(r'/p/(\d+)/', href)
-        fencer_id = id_match.group(1) if id_match else ""
-
-        # Columns: #, Name, Pool Before, Pool After, Pool Change, DE Before, DE After, DE Change
-        def safe_int(cell):
-            text = cell.get_text(strip=True)
-            # Remove arrows and signs, keep digits
-            digits = re.sub(r'[^\d]', '', text)
-            return int(digits) if digits else None
-
-        pool_before = safe_int(cells[2])
-        pool_after = safe_int(cells[3])
-        # cells[4] is change
-        de_before = safe_int(cells[5]) if len(cells) > 5 else None
-        de_after = safe_int(cells[6]) if len(cells) > 6 else None
-
-        strengths[fencer_id] = {
-            "pool_before": pool_before,
-            "pool_after": pool_after,
-            "de_before": de_before,
-            "de_after": de_after,
-        }
-
-    return strengths
-
-
 def parse_fencer_history(html):
     """Extract fencer profile info and bout history from their history page.
 
-    Returns dict with: birth_year, club, rating, events (list of event bouts).
+    Returns dict with: birth_year, club, events (list of event data with bouts).
     """
     soup = BeautifulSoup(html, "html.parser")
 
-    # Birth year: in an h3 tag inside the header area
+    # Birth year
     birth_year = ""
     header = soup.find("div", class_="card-header")
     if header:
@@ -279,7 +169,7 @@ def parse_fencer_history(html):
             if re.match(r'^\d{4}$', text):
                 birth_year = text
 
-    # Club: first link in the profile header area to /club/
+    # Club
     club = ""
     if header:
         club_link = header.find("a", href=re.compile(r'/club/'))
@@ -292,8 +182,6 @@ def parse_fencer_history(html):
     if not card_body:
         return {"birth_year": birth_year, "club": club, "events": []}
 
-    # Events are grouped by h4 (tournament name), h5 (event + date), h6 (placement info)
-    # then a table of bouts
     current_event = None
     for el in card_body.children:
         if not hasattr(el, 'name') or el.name is None:
@@ -301,11 +189,15 @@ def parse_fencer_history(html):
 
         if el.name == "h4":
             tournament_name = el.get_text(strip=True)
-            current_event = {"tournament_name": tournament_name, "event_name": "", "date": "", "rating": "", "place": "", "bouts": []}
+            current_event = {
+                "tournament_name": tournament_name,
+                "event_name": "", "event_id": "",
+                "date": "", "rating": "", "place": "",
+                "bouts": [],
+            }
             events.append(current_event)
 
         elif el.name == "h5" and current_event is not None:
-            # "<a href="/event/34995/results">Senior Mixed Épée</a> (A2, SNR), October 19, 2025"
             text = el.get_text(strip=True)
             link = el.find("a")
             if link:
@@ -313,25 +205,20 @@ def parse_fencer_history(html):
                 event_href = link.get("href", "")
                 eid_match = re.search(r'/event/(\d+)/', event_href)
                 current_event["event_id"] = eid_match.group(1) if eid_match else ""
-            # Date is after the last comma
             date_match = re.search(r',\s*(\w+ \d+,\s*\d{4})', text)
             if date_match:
                 current_event["date"] = date_match.group(1).strip()
 
         elif el.name == "h6" and current_event is not None:
             text = el.get_text(strip=True)
-            # "Place 1 of 61, Seed 1, Not ranked, Rating A25, Academy Of Fencing Masters (AFM)"
             place_match = re.search(r'Place (\d+) of (\d+)', text)
             if place_match:
                 current_event["place"] = place_match.group(1)
             rating_match = re.search(r'Rating (\S+)', text)
             if rating_match:
-                current_event["rating"] = rating_match.group(1)
-                # Strip trailing comma if present
-                current_event["rating"] = current_event["rating"].rstrip(",")
+                current_event["rating"] = rating_match.group(1).rstrip(",")
 
         elif el.name == "div" and current_event is not None:
-            # Look for bout table inside this div
             table = el.find("table")
             if table:
                 current_event["bouts"] = _parse_bout_table(table)
@@ -355,7 +242,7 @@ def _parse_bout_table(table):
         if len(cells) < 10:
             continue
 
-        bout_type = cells[0].get_text(strip=True)  # Pool, T256, T128, etc.
+        bout_type_raw = cells[0].get_text(strip=True)  # Pool, T256, T128, etc.
         result_span = cells[1].find("span")
         result = result_span.get_text(strip=True) if result_span else cells[1].get_text(strip=True)
         score = cells[2].get_text(strip=True)
@@ -366,181 +253,243 @@ def _parse_bout_table(table):
         opp_id_match = re.search(r'/p/(\d+)/', opponent_href)
         opponent_id = opp_id_match.group(1) if opp_id_match else ""
 
-        # cells[4] is flag
         opponent_rating = cells[7].get_text(strip=True) if len(cells) > 7 else ""
-        opponent_place = cells[8].get_text(strip=True) if len(cells) > 8 else ""
         opponent_club = cells[9].get_text(strip=True) if len(cells) > 9 else ""
 
-        # Normalize bout type: Pool stays "Pool", T-numbers become "DE"
-        if bout_type.startswith("T") or bout_type in ("Finals", "Semi", "Quarter"):
-            bout_type_normalized = "DE"
-        elif bout_type.lower() == "pool":
-            bout_type_normalized = "Pool"
+        # ELO ratings: index 10 = opponent strength, index 11 = fencer strength
+        opponent_elo = ""
+        fencer_elo = ""
+        if len(cells) > 10:
+            elo_text = cells[10].get_text(strip=True)
+            if elo_text and re.match(r'^\d+$', elo_text):
+                opponent_elo = elo_text
+        if len(cells) > 11:
+            elo_text = cells[11].get_text(strip=True)
+            if elo_text and re.match(r'^\d+$', elo_text):
+                fencer_elo = elo_text
+
+        # Chance of Victory — index 13
+        win_probability = ""
+        if len(cells) >= 14:
+            wp_text = cells[13].get_text(strip=True)
+            wp_match = re.search(r'(\d+)%', wp_text)
+            if wp_match:
+                win_probability = wp_match.group(1)
+
+        # Normalize bout type
+        if bout_type_raw.startswith("T") or bout_type_raw in ("Finals", "Semi", "Quarter"):
+            bout_type = "DE"
+        elif bout_type_raw.lower() == "pool":
+            bout_type = "Pool"
         else:
-            bout_type_normalized = bout_type
+            bout_type = bout_type_raw
 
         bouts.append({
-            "bout_type": bout_type_normalized,
-            "bout_type_raw": bout_type,
+            "bout_type": bout_type,
+            "bout_type_raw": bout_type_raw,
             "result": result,
             "score": score,
             "opponent_name": opponent_name,
             "opponent_id": opponent_id,
             "opponent_rating": opponent_rating,
-            "opponent_place": opponent_place,
             "opponent_club": opponent_club,
+            "opponent_elo": opponent_elo,
+            "fencer_elo": fencer_elo,
+            "win_probability": win_probability,
         })
 
     return bouts
 
 
+def _is_target_year(date_str):
+    """Check if a date string contains the target year (2024)."""
+    return "2024" in date_str
+
+
+def _detect_weapon(event_name):
+    """Detect weapon from event name."""
+    name_lower = event_name.lower()
+    if "epee" in name_lower or "épée" in name_lower:
+        return "epee"
+    elif "foil" in name_lower:
+        return "foil"
+    elif "saber" in name_lower or "sabre" in name_lower:
+        return "saber"
+    return ""
+
+
 # ── Main Assembly ────────────────────────────────────────────────────────────
 
-def scrape_event(event_id):
-    """Scrape a single event and return bout-level rows."""
-    print(f"\n{'='*60}")
-    print(f"Scraping event {event_id}")
-    print(f"{'='*60}")
+def build_fencer_population(event_ids=None):
+    """Phase 1: Scrape Summer Nationals events to build fencer population.
 
-    # 1. Fetch and parse event results page
-    results_url = f"{BASE_URL}/event/{event_id}/results"
-    results_html = fetch_page(results_url)
-    if not results_html:
-        return []
+    Returns:
+        fencer_pop: dict mapping fencer_id -> {name, profile_url, gender, divisions}
+    """
+    if event_ids is None:
+        event_ids = list(SUMMER_NATIONALS_EVENTS.keys())
 
-    metadata = parse_event_metadata(results_html)
-    fencers = parse_event_results(results_html)
-    print(f"  Found {len(fencers)} fencers in {metadata['event_name']}")
+    fencer_pop = {}  # fencer_id -> {name, profile_url, gender, divisions: set}
 
-    # 2. Fetch and parse strength page
-    strength_url = f"{BASE_URL}/event/{event_id}/results/strength"
-    strength_html = fetch_page(strength_url)
-    strengths = parse_event_strength(strength_html) if strength_html else {}
+    for eid in event_ids:
+        event_info = SUMMER_NATIONALS_EVENTS.get(eid, {})
+        gender = event_info.get("gender", "")
+        division = event_info.get("division", "")
+        event_code = event_info.get("event_code", str(eid))
 
-    # Build fencer lookup from results and strength
-    fencer_lookup = {}
-    for f in fencers:
-        fid = f["fencer_id"]
-        s = strengths.get(fid, {})
-        fencer_lookup[fid] = {
-            "name": f["name"],
-            "place": f["place"],
-            "pool_before": s.get("pool_before"),
-            "pool_after": s.get("pool_after"),
-            "de_before": s.get("de_before"),
-            "de_after": s.get("de_after"),
-        }
+        print(f"\n{'='*60}")
+        print(f"Phase 1: Scraping event {eid} ({event_code})")
+        print(f"{'='*60}")
 
-    # 3. Fetch fencer history pages to get ratings, birth years, clubs, and bout details
-    fencer_profiles = {}
-    for f in fencers:
-        fid = f["fencer_id"]
-        profile_url = BASE_URL + f["profile_url"]
-        history_html = fetch_page(profile_url)
-        if history_html:
-            profile = parse_fencer_history(history_html)
-            fencer_profiles[fid] = profile
-
-    # 4. Assemble bout rows from fencer histories
-    # We use fencer history pages as the source of truth for bout data,
-    # matching bouts to this event by event_id.
-    bouts = []
-    seen_bout_keys = set()  # track (fencer1_id, fencer2_id, score, bout_type) to deduplicate
-
-    for f in fencers:
-        fid = f["fencer_id"]
-        profile = fencer_profiles.get(fid)
-        if not profile:
+        event_url = f"{BASE_URL}/event/{eid}"
+        results_html = fetch_page(event_url)
+        if not results_html:
+            print(f"  WARNING: Could not fetch results for event {eid}")
             continue
 
-        # Find this event in the fencer's history
-        event_bouts = []
-        for ev in profile.get("events", []):
-            if ev.get("event_id") == str(event_id):
-                event_bouts = ev.get("bouts", [])
-                break
+        fencers = parse_event_fencers(results_html)
+        print(f"  Found {len(fencers)} fencers")
 
-        for bout in event_bouts:
-            opp_id = bout["opponent_id"]
-
-            # Create a canonical key to avoid double-counting bouts
-            # (each bout appears in both fencers' histories)
-            # Normalize score: "5:3" and "3:5" refer to the same bout
-            ids_sorted = tuple(sorted([fid, opp_id]))
-            score_parts = bout["score"].split(":")
-            score_canonical = ":".join(sorted(score_parts, reverse=True)) if len(score_parts) == 2 else bout["score"]
-            bout_key = (ids_sorted[0], ids_sorted[1], score_canonical, bout["bout_type"])
-            if bout_key in seen_bout_keys:
-                continue
-            seen_bout_keys.add(bout_key)
-
-            # Determine winner
-            if bout["result"] == "V":
-                winner = 1
-                fencer_1_id, fencer_2_id = fid, opp_id
+        for f in fencers:
+            fid = f["fencer_id"]
+            if fid in fencer_pop:
+                # Fencer already seen — add this division
+                fencer_pop[fid]["divisions"].add(division)
             else:
-                winner = 2
-                fencer_1_id, fencer_2_id = fid, opp_id
+                fencer_pop[fid] = {
+                    "name": f["name"],
+                    "profile_url": f["profile_url"],
+                    "gender": gender,
+                    "divisions": {division},
+                }
 
-            f1_info = fencer_lookup.get(fencer_1_id, {})
-            f2_info = fencer_lookup.get(fencer_2_id, {})
-            f1_profile = fencer_profiles.get(fencer_1_id, {})
-            f2_profile = fencer_profiles.get(fencer_2_id, {})
+    print(f"\n{'='*60}")
+    print(f"Phase 1 complete: {len(fencer_pop)} unique fencers across {len(event_ids)} events")
+    print(f"{'='*60}")
 
-            # Get rating for fencer 1 from their event entry
-            f1_rating = ""
-            for ev in f1_profile.get("events", []):
-                if ev.get("event_id") == str(event_id):
-                    f1_rating = ev.get("rating", "")
-                    break
+    # Gender breakdown
+    m_count = sum(1 for f in fencer_pop.values() if f["gender"] == "M")
+    f_count = sum(1 for f in fencer_pop.values() if f["gender"] == "F")
+    print(f"  Men: {m_count}, Women: {f_count}")
 
-            # For fencer 2, if they're in our profiles use that, otherwise use opponent_rating from bout
-            f2_rating = ""
-            if fencer_2_id in fencer_profiles:
-                for ev in fencer_profiles[fencer_2_id].get("events", []):
-                    if ev.get("event_id") == str(event_id):
-                        f2_rating = ev.get("rating", "")
-                        break
-            if not f2_rating:
-                f2_rating = bout.get("opponent_rating", "")
+    return fencer_pop
 
-            bout_id = f"{event_id}_{fencer_1_id}_{fencer_2_id}_{bout['bout_type']}_{bout['score']}"
 
-            bouts.append({
-                "bout_id": bout_id,
-                "tournament_name": metadata["tournament_name"],
-                "event_id": str(event_id),
-                "event_name": metadata["event_name"],
-                "weapon": metadata["weapon"],
-                "date": metadata["date"],
-                "location": metadata["location"],
-                "fencer_1_name": f1_info.get("name", bout.get("opponent_name", "") if bout["result"] == "D" else f["name"]),
-                "fencer_1_id": fencer_1_id,
-                "fencer_1_rating": f1_rating,
-                "fencer_1_elo_pool_before": f1_info.get("pool_before", ""),
-                "fencer_1_elo_pool_after": f1_info.get("pool_after", ""),
-                "fencer_1_elo_de_before": f1_info.get("de_before", ""),
-                "fencer_1_elo_de_after": f1_info.get("de_after", ""),
-                "fencer_1_birth_year": f1_profile.get("birth_year", ""),
-                "fencer_1_club": f1_profile.get("club", ""),
-                "fencer_1_place": f1_info.get("place", ""),
-                "fencer_2_name": f2_info.get("name", bout["opponent_name"]),
-                "fencer_2_id": fencer_2_id,
-                "fencer_2_rating": f2_rating,
-                "fencer_2_elo_pool_before": f2_info.get("pool_before", ""),
-                "fencer_2_elo_pool_after": f2_info.get("pool_after", ""),
-                "fencer_2_elo_de_before": f2_info.get("de_before", ""),
-                "fencer_2_elo_de_after": f2_info.get("de_after", ""),
-                "fencer_2_birth_year": f2_profile.get("birth_year", ""),
-                "fencer_2_club": f2_profile.get("club", ""),
-                "fencer_2_place": f2_info.get("place", ""),
-                "winner": winner,
-                "score": bout["score"],
-                "bout_type": bout["bout_type"],
-            })
+def scrape_fencer_bouts(fencer_pop):
+    """Phase 2: Scrape all 2025 bouts for each fencer in the population.
 
-    print(f"  Assembled {len(bouts)} bouts from event {event_id}")
-    return bouts
+    Returns:
+        all_bouts: list of bout dicts ready for CSV
+        seen_bout_keys: set used for deduplication
+    """
+    all_bouts = []
+    seen_bout_keys = set()  # (sorted_id_1, sorted_id_2, event_id, score_canonical, bout_type_raw)
+
+    total = len(fencer_pop)
+    import time as _time
+    _phase2_start = _time.time()
+    for i, (fid, fencer_info) in enumerate(fencer_pop.items(), 1):
+        if i % 20 == 0 or i == 1:
+            elapsed = _time.time() - _phase2_start
+            rate = i / elapsed if elapsed > 0 else 0
+            remaining = (total - i) / rate if rate > 0 else 0
+            print(f"\n[Progress] Fencer {i}/{total} | {len(all_bouts)} bouts | "
+                  f"{elapsed:.0f}s elapsed | ~{remaining:.0f}s remaining", flush=True)
+
+        profile_url = BASE_URL + fencer_info["profile_url"]
+        history_html = fetch_page(profile_url)
+        if not history_html:
+            print(f"  WARNING: Could not fetch history for {fencer_info['name']}")
+            continue
+
+        profile = parse_fencer_history(history_html)
+        fencer_gender = fencer_info["gender"]
+        fencer_divisions = ",".join(sorted(fencer_info["divisions"]))
+
+        # Iterate over all events in fencer's history, filtering to 2025
+        bout_count = 0
+        for ev in profile.get("events", []):
+            if not _is_target_year(ev.get("date", "")):
+                continue
+
+            event_id = ev.get("event_id", "")
+            event_name = ev.get("event_name", "")
+            weapon = _detect_weapon(event_name)
+            fencer_rating = ev.get("rating", "")
+
+            for bout in ev.get("bouts", []):
+                opp_id = bout["opponent_id"]
+
+                # ── Deduplication ──
+                # Use canonical key: sorted fencer IDs + event_id + canonical score + raw bout type
+                # This ensures each bout appears exactly once even when both
+                # fencers are in our population.
+                ids_sorted = tuple(sorted([fid, opp_id]))
+                score_parts = bout["score"].split(":")
+                if len(score_parts) == 2:
+                    score_canonical = ":".join(sorted(score_parts, reverse=True))
+                else:
+                    score_canonical = bout["score"]
+                bout_key = (ids_sorted[0], ids_sorted[1], event_id, score_canonical, bout["bout_type_raw"])
+
+                if bout_key in seen_bout_keys:
+                    continue
+                seen_bout_keys.add(bout_key)
+
+                # ── Gender inference for opponent ──
+                # If win_probability is present, opponent is same gender as fencer.
+                # If absent, opponent is different gender.
+                wp = bout.get("win_probability", "")
+                if wp:
+                    opponent_gender = fencer_gender
+                else:
+                    # Cross-gender or unknown
+                    # Check if opponent is in our population
+                    if opp_id in fencer_pop:
+                        opponent_gender = fencer_pop[opp_id]["gender"]
+                    else:
+                        # No win probability and not in population — could be cross-gender
+                        # or simply unrated. Mark as opposite gender per the plan's logic.
+                        opponent_gender = "F" if fencer_gender == "M" else "M" if fencer_gender == "F" else ""
+
+                # Determine winner indicator
+                winner_indicator = "W" if bout["result"] == "V" else "L"
+
+                bout_id = f"{event_id}_{fid}_{opp_id}_{bout['bout_type_raw']}_{bout['score']}"
+
+                all_bouts.append({
+                    "bout_id": bout_id,
+                    "tournament_name": ev.get("tournament_name", ""),
+                    "event_id": event_id,
+                    "event_name": event_name,
+                    "weapon": weapon,
+                    "date": ev.get("date", ""),
+                    "fencer_name": fencer_info["name"],
+                    "fencer_id": fid,
+                    "fencer_gender": fencer_gender,
+                    "fencer_rating": fencer_rating,
+                    "fencer_birth_year": profile.get("birth_year", ""),
+                    "fencer_club": profile.get("club", ""),
+                    "opponent_name": bout["opponent_name"],
+                    "opponent_id": opp_id,
+                    "opponent_gender": opponent_gender,
+                    "opponent_rating": bout.get("opponent_rating", ""),
+                    "opponent_elo": bout.get("opponent_elo", ""),
+                    "opponent_club": bout.get("opponent_club", ""),
+                    "fencer_elo": bout.get("fencer_elo", ""),
+                    "result": winner_indicator,
+                    "score": bout["score"],
+                    "bout_type": bout["bout_type"],
+                    "bout_type_raw": bout["bout_type_raw"],
+                    "is_de": bout["bout_type"] == "DE",
+                    "win_probability": wp,
+                    "fencer_divisions": fencer_divisions,
+                })
+                bout_count += 1
+
+        pass  # progress printed every 20 fencers above
+
+    return all_bouts
 
 
 def write_csv(all_bouts, path):
@@ -554,43 +503,63 @@ def write_csv(all_bouts, path):
 
 
 def main():
-    """Main entry point: scrape seed events and write CSV."""
+    """Main entry point: two-phase scrape and write CSV."""
     import argparse
-    parser = argparse.ArgumentParser(description="Scrape fencingtracker.com bout data")
+    parser = argparse.ArgumentParser(description="Scrape fencingtracker.com bout data (2024 bouts, Summer Nationals population)")
     parser.add_argument("--events", type=int, nargs="*", default=None,
-                        help="Event IDs to scrape (default: use seed list)")
-    parser.add_argument("--limit", type=int, default=None,
-                        help="Max number of events to scrape from seed list")
+                        help="Summer Nationals event IDs to use for population (default: all 24)")
+    parser.add_argument("--limit-events", type=int, default=None,
+                        help="Max number of events to scrape for population")
+    parser.add_argument("--limit-fencers", type=int, default=None,
+                        help="Max number of fencers to scrape bouts for")
     parser.add_argument("--output", type=str, default=OUTPUT_CSV,
                         help="Output CSV path")
     args = parser.parse_args()
 
-    event_ids = args.events if args.events else SEED_EVENTS
-    if args.limit:
-        event_ids = event_ids[:args.limit]
+    # Phase 1: Build population
+    event_ids = args.events if args.events else list(SUMMER_NATIONALS_EVENTS.keys())
+    if args.limit_events:
+        event_ids = event_ids[:args.limit_events]
 
-    print(f"Scraping {len(event_ids)} events: {event_ids}")
+    fencer_pop = build_fencer_population(event_ids)
 
-    all_bouts = []
-    for eid in event_ids:
-        bouts = scrape_event(eid)
-        all_bouts.extend(bouts)
+    if not fencer_pop:
+        print("No fencers found. Exiting.")
+        return
+
+    # Optionally limit fencers for testing
+    if args.limit_fencers:
+        limited = dict(list(fencer_pop.items())[:args.limit_fencers])
+        print(f"\nLimiting to {len(limited)} fencers for testing")
+        fencer_pop = limited
+
+    # Phase 2: Scrape all 2025 bouts
+    all_bouts = scrape_fencer_bouts(fencer_pop)
 
     if all_bouts:
         write_csv(all_bouts, args.output)
     else:
         print("No bouts collected.")
 
-    # Print summary
+    # Summary
     print(f"\n{'='*60}")
     print(f"SUMMARY")
     print(f"{'='*60}")
-    print(f"Events scraped: {len(event_ids)}")
+    print(f"Population events: {len(event_ids)}")
+    print(f"Unique fencers: {len(fencer_pop)}")
     print(f"Total bouts: {len(all_bouts)}")
     pool_bouts = sum(1 for b in all_bouts if b["bout_type"] == "Pool")
     de_bouts = sum(1 for b in all_bouts if b["bout_type"] == "DE")
     print(f"  Pool bouts: {pool_bouts}")
     print(f"  DE bouts: {de_bouts}")
+    m_bouts = sum(1 for b in all_bouts if b["fencer_gender"] == "M")
+    f_bouts = sum(1 for b in all_bouts if b["fencer_gender"] == "F")
+    print(f"  Bouts from male fencers: {m_bouts}")
+    print(f"  Bouts from female fencers: {f_bouts}")
+    wp_present = sum(1 for b in all_bouts if b["win_probability"])
+    wp_absent = sum(1 for b in all_bouts if not b["win_probability"])
+    print(f"  With win probability (same gender): {wp_present}")
+    print(f"  Without win probability (cross/unknown): {wp_absent}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,10 @@
+Let's try the analysis approach somewhat differently. We'll start with one consistent set of data for analysis. This data will be the 2024 calendar year bouts for participants in the 2024 July Summer Nationals.
+Put the existing cached data from the previous scraping exercise into a junk folder.
+Then, start over with the 2024 Summer Nationals (https://fencingtracker.com/tournament/1041). This will be our base for gathering a population of active fencers.
+Now adapt our existing scraper to zoom in on Division I, IA, II, and III for all weapon and gender combinations. Here are some sample event pages: https://fencingtracker.com/event/11002, https://fencingtracker.com/event/11050, https://fencingtracker.com/event/10999
+From these event pages, for all fencers that competed in the event, scrape the results and key data for all of bouts in calendar year 2025. Include a flag on whether the bout was a direct elimination or pool match. Include a gender flag for every fencer based on whether they competed in a Men's event or a Women's event at 2025 Summer Nationals. Then we can also identify the gender of their opponents on the bout level by observing that, if there was a win probability estimation for the bout on the individual fencer's page, then the fencers are of the same gender (both M or both F) and if there is no win probability estimation then the two fencers are of different genders (M vs. F or F vs. M). 
+Finally, we can rerun the analysis previously established.
+Does that make sense? Do you have any concerns with this approach?
+How many fencers and bouts will be scraped via this method?
+
+Can we do some additional analysis to get win rates between M and F fencers? I would like to see the win rate of A rated women fencers against A, B, C, etc. rated men's fencers, both total and separated by weapon, and including the sample size along with the win rate in the same chart. I'd also like to see the same chart with win rates of different ELO ratings, bucketed, vs. different letter ratings of the opposite gender. Separate all analysis by pool vs. DE.
