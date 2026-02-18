@@ -1,0 +1,63 @@
+Analysis Part 2: Seed vs. Placement — Key Findings Discussion
+=============================================================
+Dataset: 4,791 observations, 2,235 unique fencers, 24 events across 4 tournaments
+(3 NACs + Summer Nationals, Div I only, 2024)
+
+Expanded dataset includes opponent seed/placement data extracted from bout tables,
+more than doubling fencer coverage from the original 1,053 cached population.
+
+CORRELATIONS
+------------
+Overall Spearman r = 0.741 — seeds are meaningfully predictive of placement.
+
+Predictability ranking by weapon:
+  Foil:  r=0.763 — most predictable
+  Epee:  r=0.736
+  Saber: r=0.700 — least predictable
+
+Gender differences are modest:
+  M: r=0.736 (n=2914)
+  F: r=0.696 (n=1877)
+
+REGRESSION
+----------
+OLS on log(placement) ~ log(seed) + weapon + gender + interactions:
+  Overall R-squared: 0.552
+  Seed coefficient: 0.72 (highly significant)
+  Saber and gender_F terms are significant; weapon:gender interactions are not.
+
+Per-slice R-squared:
+  Highest: foil F (R2=0.568)
+  Lowest:  epee F (R2=0.484)
+
+UPSET DISTANCE (place - seed)
+-----------------------------
+Epee has the most volatile outcomes (SD=69.2), especially men's epee (SD=80.1).
+Foil (SD=49.5) and saber (SD=46.5) are substantially less volatile.
+Levene's test confirms significantly different volatility across weapons (p<0.0001).
+
+Men's events are more volatile than women's across all weapons:
+  Epee M SD=80.1 vs F SD=45.1
+  Foil M SD=55.7 vs F SD=37.0
+  Saber M SD=51.5 vs F SD=39.2
+
+TOP-N SEED SURVIVAL
+--------------------
+Top-8 recall (fraction of top-8 seeds finishing top-8):
+  Foil:  52.4%
+  Saber: 46.9%
+  Epee:  31.2% — top seeds are most likely to get knocked out
+
+Top-32 recall converges across weapons (~57-59%), suggesting the volatility
+is concentrated at the top of the draw.
+
+SYNTHESIS
+---------
+- Seeds are predictive but far from deterministic at the Div I level.
+- Foil is consistently the most predictable weapon across all metrics.
+- Saber is the least predictable by correlation; epee is the most volatile
+  by upset distance and has the worst top-8 seed survival.
+- Men's events are more volatile than women's, likely reflecting larger
+  field sizes (more opportunities for upsets in early DE rounds).
+- The weapon:gender interaction terms are not significant in regression,
+  meaning the gender effect on predictability does not vary by weapon.

@@ -1,0 +1,184 @@
+======================================================================
+ANALYSIS PART 2: SEED VS. PLACEMENT FINDINGS
+Div I NAC/Nationals Events, 2024
+======================================================================
+
+DATA OVERVIEW
+----------------------------------------
+Total observations: 4791
+Unique fencers: 2235
+Unique events (event_id): 24
+Tournaments: 4
+
+Counts by weapon x gender:
+gender     F     M   All
+weapon                  
+epee     708  1195  1903
+foil     561   924  1485
+saber    608   795  1403
+All     1877  2914  4791
+
+Tournaments represented:
+  Division 1/Parafencing National Championships + April NAC: 823 rows
+  January NAC: 1345 rows
+  National Championships and July Challenge (Summer Nationals): 1040 rows
+  October NAC: 1583 rows
+
+======================================================================
+APPROACH 1: SPEARMAN RANK CORRELATION (seed vs. placement)
+======================================================================
+
+Higher r = more predictable (seed correlates strongly with placement)
+
+weapon gender    n  spearman_r  p_value
+   All    All 4791      0.7408   0.0000
+  epee    All 1903      0.7360   0.0000
+  foil    All 1485      0.7634   0.0000
+ saber    All 1403      0.6999   0.0000
+   All      M 2914      0.7360   0.0000
+   All      F 1877      0.6959   0.0000
+  epee      M 1195      0.7206   0.0000
+  epee      F  708      0.6814   0.0000
+  foil      M  924      0.7558   0.0000
+  foil      F  561      0.7175   0.0000
+ saber      M  795      0.6939   0.0000
+ saber      F  608      0.6812   0.0000
+
+Most predictable weapon: foil (r=0.763)
+Least predictable weapon: saber (r=0.700)
+
+======================================================================
+APPROACH 2: OLS REGRESSION — log(placement) ~ log(seed) + weapon + gender + interactions
+======================================================================
+
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              log_place   R-squared:                       0.552
+Model:                            OLS   Adj. R-squared:                  0.551
+Method:                 Least Squares   F-statistic:                     981.5
+Date:                Tue, 17 Feb 2026   Prob (F-statistic):               0.00
+Time:                        18:09:19   Log-Likelihood:                -4989.2
+No. Observations:                4791   AIC:                             9992.
+Df Residuals:                    4784   BIC:                         1.004e+04
+Df Model:                           6                                         
+Covariance Type:            nonrobust                                         
+================================================================================
+                   coef    std err          t      P>|t|      [0.025      0.975]
+--------------------------------------------------------------------------------
+const            1.3155      0.052     25.369      0.000       1.214       1.417
+log_seed         0.7217      0.010     71.819      0.000       0.702       0.741
+weapon_foil     -0.0743      0.030     -2.463      0.014      -0.133      -0.015
+weapon_saber    -0.1234      0.032     -3.895      0.000      -0.186      -0.061
+gender_F        -0.1497      0.033     -4.538      0.000      -0.214      -0.085
+foil_F           0.0107      0.049      0.219      0.827      -0.085       0.107
+saber_F          0.0785      0.049      1.591      0.112      -0.018       0.175
+==============================================================================
+Omnibus:                      916.548   Durbin-Watson:                   1.755
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             2371.592
+Skew:                          -1.038   Prob(JB):                         0.00
+Kurtosis:                       5.751   Cond. No.                         34.3
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+Per-slice R-squared (log(place) ~ log(seed)):
+weapon gender    n  r_squared  seed_coef  seed_pvalue
+  epee      M 1195     0.4958     0.7037       0.0000
+  epee      F  708     0.4837     0.6980       0.0000
+  foil      M  924     0.5602     0.7503       0.0000
+  foil      F  561     0.5681     0.7608       0.0000
+ saber      M  795     0.5207     0.7218       0.0000
+ saber      F  608     0.4974     0.7055       0.0000
+
+Highest R-squared: foil F (R2=0.568)
+Lowest R-squared: epee F (R2=0.484)
+
+======================================================================
+APPROACH 3: UPSET DISTANCE (place - seed)
+======================================================================
+
+Positive = underperformed seed, Negative = overperformed seed
+Larger SD = more volatile/unpredictable
+
+  EPEE    : mean=-1.6, SD=69.2, median=+0, n=1903
+  FOIL    : mean=-1.3, SD=49.5, median=+0, n=1485
+  SABER   : mean=-1.6, SD=46.5, median=-2, n=1403
+
+  EPEE     M: mean=-2.1, SD=80.1, median=-1, n=1195
+  EPEE     F: mean=-0.7, SD=45.1, median=+0, n=708
+  FOIL     M: mean=-1.6, SD=55.7, median=+0, n=924
+  FOIL     F: mean=-0.9, SD=37.0, median=-1, n=561
+  SABER    M: mean=-2.0, SD=51.5, median=-2, n=795
+  SABER    F: mean=-1.1, SD=39.2, median=-1, n=608
+
+Levene's test for equality of variances across weapons:
+  W=75.081, p=0.0000
+  -> Significant: volatility differs across weapons
+
+======================================================================
+APPROACH 4: TOP-N SEED SURVIVAL
+======================================================================
+
+Recall: of top-N seeds, what fraction finished top-N?
+Precision: of top-N finishers, what fraction were seeded top-N?
+
+weapon gender  threshold  recall  precision  n_seeds  n_finishers  n_events
+   All    All          8   0.435      0.432      191          192        24
+   All    All         16   0.493      0.490      381          384        24
+   All    All         32   0.578      0.572      760          768        24
+  epee    All          8   0.312      0.312       64           64         8
+  epee    All         16   0.433      0.430      127          128         8
+  epee    All         32   0.571      0.566      254          256         8
+  foil    All          8   0.524      0.516       63           64         8
+  foil    All         16   0.532      0.523      126          128         8
+  foil    All         32   0.585      0.578      253          256         8
+ saber    All          8   0.469      0.469       64           64         8
+ saber    All         16   0.516      0.516      128          128         8
+ saber    All         32   0.577      0.570      253          256         8
+
+By weapon x gender:
+weapon gender  threshold  recall  precision  n_seeds  n_finishers  n_events
+  epee      M          8   0.312      0.312       32           32         4
+  epee      M         16   0.406      0.406       64           64         4
+  epee      M         32   0.528      0.523      127          128         4
+  epee      F          8   0.312      0.312       32           32         4
+  epee      F         16   0.460      0.453       63           64         4
+  epee      F         32   0.614      0.609      127          128         4
+  foil      M          8   0.438      0.438       32           32         4
+  foil      M         16   0.524      0.516       63           64         4
+  foil      M         32   0.559      0.555      127          128         4
+  foil      F          8   0.613      0.594       31           32         4
+  foil      F         16   0.540      0.531       63           64         4
+  foil      F         32   0.611      0.602      126          128         4
+ saber      M          8   0.438      0.438       32           32         4
+ saber      M         16   0.516      0.516       64           64         4
+ saber      M         32   0.563      0.555      126          128         4
+ saber      F          8   0.500      0.500       32           32         4
+ saber      F         16   0.516      0.516       64           64         4
+ saber      F         32   0.591      0.586      127          128         4
+
+======================================================================
+SYNTHESIS
+======================================================================
+
+Predictability ranking (by Spearman correlation):
+  FOIL    : r=0.763 (n=1485)
+  EPEE    : r=0.736 (n=1903)
+  SABER   : r=0.700 (n=1403)
+
+Key questions answered:
+
+Q: Does initial seed predict final placement?
+A: Yes. Overall Spearman r = 0.741. Seeds are meaningfully predictive of placement,
+   though substantial variation remains (many upsets and underperformances).
+
+Q: Does predictability vary by weapon?
+A: The spread in Spearman r across weapons is 0.063.
+   FOIL is most predictable (r=0.763),
+   SABER is least predictable (r=0.700).
+   Levene's test confirms significantly different volatility across weapons.
+
+Q: Are there gender differences in predictability?
+   M: r=0.736 (n=2914)
+   F: r=0.696 (n=1877)
